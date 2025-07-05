@@ -45,18 +45,29 @@ Estudos de usabilidade linguística.
 
 🌟 Dodecálogo Gurudev
 
-Simplicidade Elegante sobre complexidade desnecessária
-Expressividade Clara sobre otimização prematura
-Interoperabilidade Universal sobre isolamento linguístico
-Segurança por Design sobre correção posterior
-Composabilidade sobre monolitismo
-Imutabilidade Padrão sobre mutabilidade irrestrita
-Tipagem Gradual sobre extremos absolutos
-Concorrência Cooperativa sobre competição destrutiva
-Metaprogramação Responsável sobre magia excessiva
-Evolução Incremental sobre revoluções disruptivas
-Documentação Viva sobre comentários mortos
-Comunidade Inclusiva sobre elitismo técnico
+Simplicidade Elegante sobre complexidade desnecessária;
+
+Expressividade Clara sobre otimização prematura;
+
+Interoperabilidade Universal sobre isolamento linguístico;
+
+Segurança por Design sobre correção posterior;
+
+Composabilidade sobre monolitismo;
+
+Imutabilidade Padrão sobre mutabilidade irrestrita;
+
+Tipagem Gradual sobre extremos absolutos;
+
+Concorrência Cooperativa sobre competição destrutiva;
+
+Metaprogramação Responsável sobre magia excessiva;
+
+Evolução Incremental sobre revoluções disruptivas;
+
+Documentação Viva sobre comentários mortos;
+
+Comunidade Inclusiva sobre elitismo técnico.
 
 ## 🚀 Instalação Rápida
 
