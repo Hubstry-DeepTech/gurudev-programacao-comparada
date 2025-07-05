@@ -1,0 +1,244 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "description": "Base de Dados para Programação Comparada - Gurudev",
+    "last_updated": "2025-07-04",
+    "dodecalogo_compliance": true
+  },
+  "paradigms": {
+    "imperative": {
+      "description": "Baseado em comandos que mudam o estado do programa",
+      "characteristics": ["sequential_execution", "mutable_state", "explicit_control_flow"]
+    },
+    "functional": {
+      "description": "Baseado em funções matemáticas e imutabilidade",
+      "characteristics": ["immutable_data", "higher_order_functions", "recursion"]
+    },
+    "object_oriented": {
+      "description": "Baseado em objetos que encapsulam dados e comportamentos",
+      "characteristics": ["encapsulation", "inheritance", "polymorphism"]
+    },
+    "declarative": {
+      "description": "Descreve o que deve ser feito, não como",
+      "characteristics": ["rule_based", "constraint_solving", "pattern_matching"]
+    }
+  },
+  "languages": {
+    "python": {
+      "paradigms": ["imperative", "object_oriented", "functional"],
+      "typing": {
+        "system": "dynamic",
+        "strength": "strong",
+        "optional_static": true
+      },
+      "memory_management": "garbage_collected",
+      "compilation": "interpreted",
+      "syntax_family": "c_like",
+      "metaprogramming": {
+        "reflection": true,
+        "decorators": true,
+        "metaclasses": true
+      },
+      "concurrency": {
+        "threading": true,
+        "async_await": true,
+        "multiprocessing": true,
+        "gil": true
+      },
+      "interoperability": {
+        "c_integration": "excellent",
+        "java_integration": "good",
+        "javascript_integration": "limited",
+        "gurudev_compatibility": 85
+      },
+      "learning_curve": "gentle",
+      "performance": "medium",
+      "ecosystem": "extensive"
+    },
+    "javascript": {
+      "paradigms": ["imperative", "functional", "object_oriented"],
+      "typing": {
+        "system": "dynamic",
+        "strength": "weak",
+        "optional_static": false
+      },
+      "memory_management": "garbage_collected",
+      "compilation": "interpreted",
+      "syntax_family": "c_like",
+      "metaprogramming": {
+        "reflection": true,
+        "decorators": false,
+        "metaclasses": false
+      },
+      "concurrency": {
+        "threading": false,
+        "async_await": true,
+        "event_loop": true,
+        "web_workers": true
+      },
+      "interoperability": {
+        "c_integration": "good",
+        "java_integration": "limited",
+        "python_integration": "good",
+        "gurudev_compatibility": 80
+      },
+      "learning_curve": "moderate",
+      "performance": "high",
+      "ecosystem": "extensive"
+    },
+    "rust": {
+      "paradigms": ["imperative", "functional"],
+      "typing": {
+        "system": "static",
+        "strength": "strong",
+        "optional_static": false
+      },
+      "memory_management": "ownership_based",
+      "compilation": "compiled",
+      "syntax_family": "c_like",
+      "metaprogramming": {
+        "reflection": "limited",
+        "macros": true,
+        "traits": true
+      },
+      "concurrency": {
+        "threading": true,
+        "async_await": true,
+        "ownership_safety": true,
+        "fearless_concurrency": true
+      },
+      "interoperability": {
+        "c_integration": "excellent",
+        "java_integration": "good",
+        "python_integration": "good",
+        "gurudev_compatibility": 90
+      },
+      "learning_curve": "steep",
+      "performance": "very_high",
+      "ecosystem": "growing"
+    },
+    "haskell": {
+      "paradigms": ["functional"],
+      "typing": {
+        "system": "static",
+        "strength": "strong",
+        "optional_static": false
+      },
+      "memory_management": "garbage_collected",
+      "compilation": "compiled",
+      "syntax_family": "mathematical",
+      "metaprogramming": {
+        "reflection": "limited",
+        "template_haskell": true,
+        "type_classes": true
+      },
+      "concurrency": {
+        "threading": true,
+        "stm": true,
+        "par_monad": true,
+        "immutable_by_default": true
+      },
+      "interoperability": {
+        "c_integration": "good",
+        "java_integration": "limited",
+        "python_integration": "limited",
+        "gurudev_compatibility": 75
+      },
+      "learning_curve": "very_steep",
+      "performance": "high",
+      "ecosystem": "specialized"
+    },
+    "java": {
+      "paradigms": ["object_oriented", "imperative"],
+      "typing": {
+        "system": "static",
+        "strength": "strong",
+        "optional_static": false
+      },
+      "memory_management": "garbage_collected",
+      "compilation": "bytecode",
+      "syntax_family": "c_like",
+      "metaprogramming": {
+        "reflection": true,
+        "annotations": true,
+        "proxies": true
+      },
+      "concurrency": {
+        "threading": true,
+        "concurrent_collections": true,
+        "virtual_threads": true,
+        "reactive_streams": true
+      },
+      "interoperability": {
+        "c_integration": "good",
+        "python_integration": "good",
+        "javascript_integration": "limited",
+        "gurudev_compatibility": 88
+      },
+      "learning_curve": "moderate",
+      "performance": "high",
+      "ecosystem": "enterprise"
+    }
+  },
+  "comparative_metrics": {
+    "expressiveness": {
+      "description": "Capacidade de expressar conceitos complexos de forma concisa",
+      "scale": "1-10",
+      "factors": ["syntax_sugar", "abstraction_levels", "domain_specific_constructs"]
+    },
+    "safety": {
+      "description": "Prevenção de erros em tempo de compilação/execução",
+      "scale": "1-10",
+      "factors": ["type_safety", "memory_safety", "null_safety"]
+    },
+    "performance": {
+      "description": "Eficiência computacional",
+      "scale": "1-10",
+      "factors": ["execution_speed", "memory_usage", "compilation_time"]
+    },
+    "maintainability": {
+      "description": "Facilidade de manter e evoluir código",
+      "scale": "1-10",
+      "factors": ["readability", "modularity", "refactoring_support"]
+    },
+    "ecosystem": {
+      "description": "Disponibilidade de bibliotecas e ferramentas",
+      "scale": "1-10",
+      "factors": ["library_quantity", "library_quality", "tooling"]
+    }
+  },
+  "interoperability_matrix": {
+    "native_bridges": {
+      "python_c": ["ctypes", "cffi", "cython"],
+      "java_c": ["jni", "jna", "panama"],
+      "javascript_c": ["node_addons", "emscripten", "wasm"],
+      "rust_c": ["ffi", "bindgen", "cxx"]
+    },
+    "protocol_bridges": {
+      "http_rest": ["universal", "language_agnostic"],
+      "grpc": ["multi_language", "type_safe"],
+      "message_queues": ["redis", "rabbitmq", "kafka"],
+      "databases": ["sql", "nosql", "graph"]
+    },
+    "gurudev_bridges": {
+      "universal_ast": "Common syntax tree representation",
+      "type_inference": "Cross-language type compatibility",
+      "memory_model": "Unified memory management abstraction",
+      "concurrency_model": "Actor-based universal concurrency"
+    }
+  },
+  "dodecalogo_principles": {
+    "1": "Simplicidade elegante sobre complexidade desnecessária",
+    "2": "Expressividade clara sobre otimização prematura",
+    "3": "Interoperabilidade universal sobre isolamento linguístico",
+    "4": "Segurança por design sobre correção posterior",
+    "5": "Composabilidade sobre monolitismo",
+    "6": "Imutabilidade padrão sobre mutabilidade irrestrita",
+    "7": "Tipagem gradual sobre extremos absolutos",
+    "8": "Concorrência cooperativa sobre competição destrutiva",
+    "9": "Metaprogramação responsável sobre magia excessiva",
+    "10": "Evolução incremental sobre revoluções disruptivas",
+    "11": "Documentação viva sobre comentários mortos",
+    "12": "Comunidade inclusiva sobre elitismo técnico"
+  }
+}
