@@ -21,21 +21,27 @@ Inspirada em Literatura Comparada, Direito Comparado e Gramática Comparada, a *
   🎯 Casos de Uso
 🎓 Educação
 
-Ensino comparativo de linguagens
-Currículos multi-paradigmáticos
-Avaliação de proficiência cross-linguagem
+Ensino comparativo de linguagens;
+
+Currículos multi-paradigmáticos;
+
+Avaliação de proficiência cross-linguagem.
 
 🏢 Indústria
 
-Migração de sistemas legados
-Integração de equipes multi-linguagem
-Arquitetura de microsserviços heterogêneos
+Migração de sistemas legados;
+
+Integração de equipes multi-linguagem;
+
+Arquitetura de microsserviços heterogêneos.
 
 🔬 Pesquisa
 
-Análise de evolução de linguagens
-Desenvolvimento de DSLs
-Estudos de usabilidade linguística
+Análise de evolução de linguagens;
+
+Desenvolvimento de DSLs;
+
+Estudos de usabilidade linguística.
 
 🌟 Dodecálogo Gurudev
 
