@@ -1,6 +1,3 @@
-## ⚙️ setup.py
-
-```python
 from setuptools import setup, find_packages
 
 with open("README.md", "r", encoding="utf-8") as fh:
@@ -8,10 +5,10 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="gurudev-comparative-programming",
-    version="0.1.0",
-    author="Guilherme Gonçalves Machado",
+    version="0.2.0",
+    author="Guilherme Goncalves Machado",
     author_email="guilherme.ceo@hubstry.com",
-    description="Framework para Programação Comparada e Interoperabilidade Universal",
+    description="Framework para Programacao Comparada e Interoperabilidade Universal",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Hubstry-DeepTech/gurudev-programacao-comparada",
@@ -28,6 +25,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Education",
         "Topic :: Scientific/Engineering",
@@ -35,6 +33,8 @@ setup(
     python_requires=">=3.8",
     install_requires=[
         "typing-extensions>=4.0.0",
+        "pyyaml>=6.0",
+        "jsonschema>=4.0.0",
     ],
     extras_require={
         "dev": [
@@ -47,11 +47,6 @@ setup(
         "docs": [
             "sphinx>=4.0",
             "sphinx-rtd-theme>=1.0",
-        ],
-    },
-    entry_points={
-        "console_scripts": [
-            "gurudev=gurudev.cli.main:main",
         ],
     },
     include_package_data=True,
