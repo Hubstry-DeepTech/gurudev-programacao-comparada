@@ -19,7 +19,7 @@ Cada linguagem é catalogada em **14 blocos analíticos** que capturam desde met
 | **GILP** | Gramática de Interface de Linguagem de Programação — 5 camadas (cognitiva, infraestrutural, sistêmica, ecossistêmica, cultural) |
 | **Savigny** | Hermenêutica comparada — 4 dimensões (gramatical, semântica, histórica, sistemática) |
 
-Consulte o [Working Paper completo](docs/working-paper/) para a fundamentação teórica detalhada (Machado, 2026).
+Consulte o [Working Paper completo](https://doi.org/10.5281/zenodo.20028887 ) para a fundamentação teórica detalhada (Machado, 2026).
 
 ## Estrutura do Repositório
 
