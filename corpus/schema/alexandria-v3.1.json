@@ -1,0 +1,381 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/Hubstry-DeepTech/gurudev-programacao-comparada/main/corpus/schema/alexandria-v3.1.json",
+  "title": "Alexandria Schema v3.1",
+  "description": "Schema formal do protocolo de catalogacao da Programacao Comparada. Fundamentado em TATS, GILP, Analise Savigny e ProCP. Versao 3.1 - Maio de 2026. Consulte o Working Paper (Machado, 2026) para a fundamentacao teorica completa.",
+  "type": "object",
+  "required": ["meta", "bloco_1_metadados", "bloco_2_classificacao_procp", "bloco_4_metafora_fundante", "bloco_5_interface_grammar", "bloco_6_analise_savigny", "bloco_7_sintatico", "bloco_8_lexico", "bloco_9_sistema_tipos", "bloco_10_comparativo", "bloco_11_ecossistema", "bloco_13_acesso"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "Metadados da versao do schema e da entrada",
+      "required": ["versao_schema", "data_ultima_revisao"],
+      "properties": {
+        "versao_schema": {
+          "type": "string",
+          "enum": ["3.0", "3.1"],
+          "description": "Versao do schema utilizado (versionamento semantico)"
+        },
+        "data_ultima_revisao": {
+          "type": "string",
+          "format": "date",
+          "description": "Data da ultima revisao da entrada (ISO 8601)"
+        },
+        "super_camada": {
+          "type": "string",
+          "enum": ["core_analitico", "infraestrutura", "contexto_empirico"],
+          "description": "Classificacao da entrada na organizacao em super-camadas"
+        }
+      }
+    },
+
+    "bloco_1_metadados": {
+      "type": "object",
+      "description": "Identificacao e rastreabilidade. Fundamento: fase gramatical do protocolo (Secao 8.4 do WP).",
+      "required": ["nome", "slug", "ano_lancamento", "autor_empresa", "descricao_curta"],
+      "properties": {
+        "nome": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "slug": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "Identificador unico e imutavel" },
+        "ano_lancamento": { "type": "integer", "minimum": 1940, "maximum": 2030 },
+        "autor_empresa": { "type": "string", "maxLength": 200 },
+        "documentacao_oficial": { "type": "string", "format": "uri" },
+        "descricao_curta": { "type": "string", "maxLength": 280, "description": "Descricao concisa em no maximo 280 caracteres" }
+      }
+    },
+
+    "bloco_2_classificacao_procp": {
+      "type": "object",
+      "description": "Posicionamento nos eixos teoricos do campo. Fundamento: estrutura ProCP; eras historicas; camadas infraestrutural e sistemica da GILP (Secoes 5.4.1 e 5.4.2).",
+      "required": ["eixo_1_natureza", "eixo_2_paradigma", "eixo_3_tipo_sistema", "eixo_4_gerenciamento_memoria", "eixo_5_alvo_compilacao", "eixo_6_ambiente_execucao", "eixo_7_distancia_silicio", "era_historica"],
+      "properties": {
+        "eixo_1_natureza": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["GPL", "DSL", "Systems", "Scripting", "Query", "Markup"] },
+          "minItems": 1
+        },
+        "eixo_2_paradigma": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["Imperative", "Functional", "OOP", "Logic", "Concurrent", "Reactive"] },
+          "minItems": 1
+        },
+        "eixo_3_tipo_sistema": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["Static", "Dynamic", "Strong", "Weak", "Gradual"] },
+          "minItems": 1
+        },
+        "eixo_4_gerenciamento_memoria": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["Manual", "GC", "Ownership", "ARC"] },
+          "minItems": 1
+        },
+        "eixo_5_alvo_compilacao": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["Native", "JVM", "WASM", "Bytecode", "Interpreted"] },
+          "minItems": 1
+        },
+        "eixo_6_ambiente_execucao": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["Standalone", "VM", "Embedded", "Browser"] },
+          "minItems": 1
+        },
+        "eixo_7_distancia_silicio": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "0 = Assembly; 10 = linguagem de altissima abstracao"
+        },
+        "era_historica": {
+          "type": "string",
+          "enum": [
+            "Era 1: Linguagens Primitivas (1940-1950)",
+            "Era 2: Estruturadas (1950-1970)",
+            "Era 3: OO e Funcionais (1970-1990)",
+            "Era 4: Web e Scripts (1990-2010)",
+            "Era 5: Sistemas Modernos (2010-2020)",
+            "Era 6: IA e Quantica (2020-)"
+          ]
+        }
+      }
+    },
+
+    "bloco_3_status_mercado": {
+      "type": "object",
+      "description": "Dados empiricos de adocao e tendencia. Fundamento: camada ecossistemica da GILP (Secao 5.4.4); dimensao economica (Secao 2.5). Campos versionados periodicamente.",
+      "properties": {
+        "status_atual": { "type": "string", "enum": ["Growing", "Stable", "Declining", "Legacy", "Emerging"] },
+        "ranking_tiobe": { "type": ["integer", "null"], "minimum": 1 },
+        "ranking_github": { "type": ["integer", "null"], "minimum": 1 },
+        "ranking_stackoverflow": { "type": ["integer", "null"], "minimum": 1 },
+        "tendencia_ultimo_ano": { "type": "string", "enum": ["Up", "Down", "Flat"] },
+        "data_dos_rankings": { "type": "string", "description": "Data de referencia dos dados de ranking (ISO 8601)" }
+      }
+    },
+
+    "bloco_4_metafora_fundante": {
+      "type": "object",
+      "description": "Nucleo semiotico da entrada - operacionalizacao da TATS. Fundamento: TATS e seus tres modos de analogia (Secao 5.2); codigo como texto semiotico (Secao 4).",
+      "required": ["definicao", "modo_analogia_tats"],
+      "properties": {
+        "definicao": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "A imagem central que organiza o design da linguagem"
+        },
+        "explicacao": {
+          "type": "string",
+          "maxLength": 2000,
+          "description": "Desenvolvimento da metafora e suas implicacoes cognitivas"
+        },
+        "modo_analogia_tats": {
+          "type": "string",
+          "enum": ["heuristica", "funcional", "homologica"],
+          "description": "Classificacao do modo de analogia predominante segundo a TATS"
+        },
+        "homologia_dominio": {
+          "type": "object",
+          "properties": {
+            "dominio": { "type": "string", "maxLength": 200, "description": "Dominio externo com homologia" },
+            "tipo_analogia": { "type": "string", "enum": ["heuristica", "funcional", "homologica"] },
+            "explicacao": { "type": "string", "maxLength": 2000, "description": "Descricao da relacao estrutural profunda" }
+          }
+        }
+      }
+    },
+
+    "bloco_5_interface_grammar": {
+      "type": "object",
+      "description": "Analise comparativa multinivel. Fundamento: GILP e suas cinco camadas (Secao 5.4).",
+      "required": ["camada_1_cognitiva", "camada_2_infraestrutural"],
+      "properties": {
+        "camada_1_cognitiva": {
+          "type": "object",
+          "description": "Relacao com modelo mental do programador e epistemologia induzida (Secao 5.4.3).",
+          "required": ["modelo_mental_induzido", "epistemologia_implicita", "gradiente_transformacao_cognitiva"],
+          "properties": {
+            "modelo_mental_induzido": { "type": "string", "maxLength": 500 },
+            "epistemologia_implicita": { "type": "string", "maxLength": 500 },
+            "gradiente_transformacao_cognitiva": { "type": "integer", "minimum": 0, "maximum": 10 }
+          }
+        },
+        "camada_2_infraestrutural": {
+          "type": "object",
+          "description": "Relacao com hardware e modelo de execucao (Secao 5.4.1).",
+          "properties": {
+            "distancia_silicio": { "type": "integer", "minimum": 0, "maximum": 10 },
+            "modelo_memoria": { "type": "string", "maxLength": 300 },
+            "modelo_concorrencia": { "type": "string", "maxLength": 300 }
+          }
+        },
+        "camada_3_sistemica": {
+          "type": "object",
+          "description": "Relacao com sistema operacional e ambiente de execucao (Secao 5.4.2).",
+          "properties": {
+            "acesso_syscalls": { "type": "string", "maxLength": 300 },
+            "modelo_io": { "type": "string", "maxLength": 300 },
+            "portabilidade": { "type": "string", "maxLength": 300 }
+          }
+        },
+        "camada_4_ecossistemica": {
+          "type": "object",
+          "description": "Relacao com ferramentas, comunidades e mercados (Secao 5.4.4).",
+          "properties": {
+            "protocolo_interop": { "type": "string", "maxLength": 200 },
+            "filosofia_package_manager": { "type": "string", "maxLength": 300 },
+            "modelo_governanca": { "type": "string", "maxLength": 200 }
+          }
+        },
+        "camada_5_cultural": {
+          "type": "object",
+          "description": "Valores encodados e transformacao do programador (Secao 5.4.5).",
+          "properties": {
+            "valores_encodados": {
+              "type": "array",
+              "items": { "type": "string", "maxLength": 100 },
+              "maxItems": 10
+            },
+            "transformacao_programador": { "type": "string", "maxLength": 2000 },
+            "comunidade_identidade": { "type": "string", "maxLength": 300 }
+          }
+        }
+      }
+    },
+
+    "bloco_6_analise_savigny": {
+      "type": "object",
+      "description": "Hermeneutica comparada em 4 dimensoes. Fundamento: metodo hermeneutico-comparativo de Savigny (Secao 6.2).",
+      "required": ["gramatical", "semantica", "historica", "sistematica"],
+      "properties": {
+        "gramatical": { "type": "string", "maxLength": 2000, "description": "O que a linguagem diz literalmente - o que o compilador le" },
+        "semantica": { "type": "string", "maxLength": 2000, "description": "O que a linguagem significa - metaforas operativas, teorias implicitas" },
+        "historica": { "type": "string", "maxLength": 2000, "description": "Circunstancias de producao - problema original, pressoes da epoca" },
+        "sistematica": { "type": "string", "maxLength": 2000, "description": "Lugar no conjunto - genealogia, familia linguistica, posicao no ecossistema" }
+      }
+    },
+
+    "bloco_7_sintatico": {
+      "type": "object",
+      "description": "Inventario do nivel sintatico. Fundamento: Secao 4.2; estrutura superficial vs. profunda (Chomsky).",
+      "properties": {
+        "declaracoes": { "type": "array", "items": { "type": "string" } },
+        "controle_fluxo": { "type": "array", "items": { "type": "string" } },
+        "expressoes": { "type": "array", "items": { "type": "string" } },
+        "modificadores_acesso": { "type": "array", "items": { "type": "string" } },
+        "literais": { "type": "array", "items": { "type": "string" } },
+        "padroes_matching": { "type": "array", "items": { "type": "string" } },
+        "outros": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "bloco_8_lexico": {
+      "type": "object",
+      "description": "Inventario do nivel lexical. Fundamento: Secao 4.2; lexicologia comparada.",
+      "properties": {
+        "keywords": { "type": "array", "items": { "type": "string" }, "description": "Lista completa de palavras reservadas" },
+        "operadores": { "type": "array", "items": { "type": "string" } },
+        "context_sensitive_keywords": { "type": "array", "items": { "type": "string" } },
+        "literal_tokens": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "bloco_9_sistema_tipos": {
+      "type": "object",
+      "description": "Inventario do nivel semantico - sistema de tipos. Fundamento: Secao 4.2; camada infraestrutural (Secao 5.4.1).",
+      "properties": {
+        "primitivos": { "type": "array", "items": { "type": "string" } },
+        "referencia_ponteiros": { "type": "array", "items": { "type": "string" } },
+        "genericos_templates": { "type": "array", "items": { "type": "string" } },
+        "tipo_ausencia_nulo": { "type": "array", "items": { "type": "string" } },
+        "tipo_vazio_never": { "type": "array", "items": { "type": "string" } },
+        "tipos_algebricos": { "type": "array", "items": { "type": "string" } },
+        "outros": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "bloco_10_comparativo": {
+      "type": "object",
+      "description": "Relacoes de analogia e contraste com outras linguagens. Fundamento: TATS (Secao 5.2); espiral comparativa (Secao 6.4).",
+      "properties": {
+        "similaridades_para": {
+          "type": "object",
+          "additionalProperties": { "type": "array", "items": { "type": "string" } },
+          "description": "Mapa: slug_outra_linguagem -> lista de similaridades"
+        },
+        "diferencas_para": {
+          "type": "object",
+          "additionalProperties": { "type": "array", "items": { "type": "string" } },
+          "description": "Mapa: slug_outra_linguagem -> lista de diferencas"
+        },
+        "genealogia_direta": { "type": "array", "items": { "type": "string" } },
+        "influenciou": { "type": "array", "items": { "type": "string" } },
+        "familia_linguistica": { "type": "string", "maxLength": 200 }
+      }
+    },
+
+    "bloco_11_ecossistema": {
+      "type": "object",
+      "description": "Dados do nivel discursivo-bakhtiniano e camada ecossistemica. Fundamento: Secao 4.3; GILP (Secao 5.4.4).",
+      "properties": {
+        "licenca": { "type": "string", "enum": ["Proprietary", "OSS", "Mixed"] },
+        "proposito_principal": { "type": "array", "items": { "type": "string" } },
+        "hello_world": { "type": "string", "maxLength": 1000, "description": "Implementacao canonica do Hello World" },
+        "ides_principais": { "type": "array", "items": { "type": "string" } },
+        "bibliotecas_padrao_notaveis": { "type": "array", "items": { "type": "string" } },
+        "frameworks_canonicos": { "type": "array", "items": { "type": "string" } },
+        "comunidades_referencia": { "type": "array", "items": { "type": "string", "format": "uri" } },
+        "dominios_mercado": { "type": "array", "items": { "type": "string" } },
+        "pragmatica": {
+          "type": "object",
+          "description": "Nivel pragmatico: como a linguagem e efetivamente usada (proposto v3.1)",
+          "properties": {
+            "idioms_canonicos": { "type": "array", "items": { "type": "string" } },
+            "anti_padroes_comuns": { "type": "array", "items": { "type": "string" } },
+            "convencoes_comunitarias": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+
+    "bloco_12_ordenacao": {
+      "type": "object",
+      "description": "Metadados funcionais para navegacao no corpus.",
+      "properties": {
+        "campos_disponiveis": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["nome", "ano_lancamento", "era_historica", "ranking_tiobe", "distancia_silicio", "gradiente_cognitivo", "familia_linguistica"] }
+        },
+        "padrao": { "type": "string", "default": "ano_lancamento" },
+        "agrupamento_disponivel": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["era_historica", "familia_linguistica", "eixo_2_paradigma", "eixo_4_gerenciamento_memoria"] }
+        }
+      }
+    },
+
+    "bloco_13_acesso": {
+      "type": "object",
+      "description": "Informacoes de acesso e modelo de disponibilizacao. Fundamento: Secoes 2.5 e 3.4.",
+      "required": ["nivel_entrada", "funcionalidades_abertas", "funcionalidades_avancadas", "nivel_confianca", "revisor"],
+      "properties": {
+        "nivel_entrada": { "type": "string", "enum": ["Free", "Freemium", "Paid"] },
+        "funcionalidades_abertas": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Funcionalidades disponiveis na camada free"
+        },
+        "funcionalidades_avancadas": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Funcionalidades restritas a freemium/paid"
+        },
+        "versao_schema": { "type": "string" },
+        "data_ultima_revisao": { "type": "string", "format": "date" },
+        "revisor": { "type": "string", "maxLength": 200 },
+        "nivel_confianca": {
+          "type": "string",
+          "enum": ["Alto", "Medio", "Preliminar"],
+          "description": "Alto = fontes primarias verificadas; Medio = fontes secundarias confiaveis; Preliminar = inferencia analitica"
+        },
+        "revisoes_historicas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "data": { "type": "string", "format": "date" },
+              "revisor": { "type": "string" },
+              "natureza_mudanca": { "type": "string", "maxLength": 500 }
+            }
+          },
+          "description": "Historico de revisoes da entrada (proposto v3.1)"
+        }
+      }
+    },
+
+    "bloco_14_semiotico": {
+      "type": "object",
+      "description": "Nivel semiotico stricto sensu (Peirce). PROPOSTO v3.1 - bloco opcional para versao 3.1+.",
+      "properties": {
+        "relacao_semiotica_predominante": {
+          "type": "string",
+          "enum": ["iconica", "indicial", "simbolica"],
+          "description": "Tipo de relacao semiotica predominante nos constructos-chave"
+        },
+        "estrutura_triadica": {
+          "type": "object",
+          "description": "Analise signo-objeto-interpretante para constructos-chave",
+          "properties": {
+            "signo": { "type": "string", "maxLength": 500 },
+            "objeto": { "type": "string", "maxLength": 500 },
+            "interpretante": { "type": "string", "maxLength": 500 }
+          }
+        },
+        "potencial_ambiguidade_semiotica": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Grau de ambiguidade semiotica (0=univoco, 10=altamente ambiguo)"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

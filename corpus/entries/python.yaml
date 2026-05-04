@@ -1,0 +1,237 @@
+# Alexandria Schema v3.1 - Entry: Python
+# Esta entrada e PRELIMINAR - serve como exemplo de aplicacao do schema.
+# Consulte o Working Paper (Machado, 2026) para a fundamentacao teorica.
+# Valide contra: corpus/schema/alexandria-v3.1.json
+
+meta:
+  versao_schema: "3.1"
+  data_ultima_revisao: "2026-05-05"
+  super_camada: core_analitico
+
+bloco_1_metadados:
+  nome: "Python"
+  slug: "python"
+  ano_lancamento: 1991
+  autor_empresa: "Guido van Rossum / Python Software Foundation"
+  documentacao_oficial: "https://docs.python.org"
+  descricao_curta: "Linguagem de alto nivel, multiparadigma, com enfase em legibilidade e produtividade. Dominante em ciencia de dados, ML e automacao."
+
+bloco_2_classificacao_procp:
+  eixo_1_natureza: ["GPL", "Scripting"]
+  eixo_2_paradigma: ["Imperative", "OOP", "Functional"]
+  eixo_3_tipo_sistema: ["Dynamic", "Strong"]
+  eixo_4_gerenciamento_memoria: ["GC"]
+  eixo_5_alvo_compilacao: ["Bytecode", "Interpreted"]
+  eixo_6_ambiente_execucao: ["Standalone", "VM"]
+  eixo_7_distancia_silicio: 8
+  era_historica: "Era 3: OO e Funcionais (1970-1990)"
+
+bloco_3_status_mercado:
+  status_atual: "Growing"
+  ranking_tiobe: 1
+  ranking_github: 2
+  ranking_stackoverflow: 1
+  tendencia_ultimo_ano: "Up"
+  data_dos_rankings: "2026-05"
+
+bloco_4_metafora_fundante:
+  definicao: "O codigo como prosa executavel"
+  explicacao: "Python foi projetado para que o codigo se aproxime da linguagem natural - legivel por nao-programadores, estruturado pela indentacao visivel, com nomes longos e descritivos. A metafora fundante e a da escrita clara: o codigo deve ser lido antes de ser executado."
+  modo_analogia_tats: "heuristica"
+  homologia_dominio:
+    dominio: "Escrita cientifica e tecnica"
+    tipo_analogia: "funcional"
+    explicacao: "Assim como um artigo cientifico bem escrito deve ser compreensivel para qualquer leitor da area sem ambiguidades desnecessarias, o codigo Python deve ser compreensivel para qualquer programador sem comentarios excessivos. A funcao de comunicacao precede a funcao de execucao."
+
+bloco_5_interface_grammar:
+  camada_1_cognitiva:
+    modelo_mental_induzido: "Pensamento iterativo-declarativo: o programador descreve o que quer, nao como a maquina deve faze-lo"
+    epistemologia_implicita: "Legibilidade > performance; abstracao > controle; produtividade do programador > eficiencia da maquina"
+    gradiente_transformacao_cognitiva: 3
+  camada_2_infraestrutural:
+    distancia_silicio: 8
+    modelo_memoria: "GC por contagem de referencias (CPython) com ciclo de coleta para referencias circulares"
+    modelo_concorrencia: "GIL (Global Interpreter Lock) na implementacao CPython; async/await para I/O concorrente; multiprocessing para paralelismo real"
+  camada_3_sistemica:
+    acesso_syscalls: "Direto via modulo os e ctypes; abstrado pelo runtime"
+    modelo_io: "Sincrono bloqueante (padrao); assincrono via asyncio (event-loop)"
+    portabilidade: "Write once run anywhere (com CPython disponivel na plataforma)"
+  camada_4_ecossistemica:
+    protocolo_interop: "FFI via ctypes/cffi; C extension API; WebAssembly (emergente)"
+    filosofia_package_manager: "Descentralizado (PyPI) com tolerancia a namespaces"
+    modelo_governanca: "Comunidade aberta (PEP process + Core Developers + Steering Council)"
+  camada_5_cultural:
+    valores_encodados:
+      - "legibilidade"
+      - "produtividade"
+      - "baterias incluidas"
+      - "um jeito obvio de fazer cada coisa"
+      - "comunidade aberta"
+    transformacao_programador: "O programador Python desenvolve intuicao pela expressividade e pela composicao de abstracoes de alto nivel. Tende a subestimar custos computacionais e a superestimar a generalidade de solucoes legiveis. A transicao para linguagens de sistemas (C, Rust) exige ruptura cognitiva significativa."
+    comunidade_identidade: "Pragmatismo cientifico com ethos de acessibilidade"
+
+bloco_6_analise_savigny:
+  gramatical: "Indentacao significativa; 35 keywords; tipagem dinamica com anotacoes opcionais (PEP 484); sintaxe inspirada em ABC e Modula-3."
+  semantica: "Python encoda a teoria de que o custo do programador e mais importante que o custo da maquina. Cada decisao de design - GC, tipagem dinamica, indentacao obrigatoria - e uma aposta de que a legibilidade e a produtividade compensam os custos de runtime."
+  historica: "Criado por Guido van Rossum no CWI (Amsterdam) como sucessor do ABC. Lancado em 1991 em um contexto de proliferacao de linguagens de script e de crescente demanda por linguagens mais legiveis que Perl e C. A decisao de usar indentacao significativa foi herdada do ABC e inicialmente controversa."
+  sistematica: "Descendente direto de ABC; influenciado por Modula-3, Lisp e C. Influenciou Ruby, CoffeeScript e Julia. Domina ciencia de dados, ML e automacao. Ecossistema PyPI com mais de 500.000 pacotes (2026)."
+
+bloco_7_sintatico:
+  declaracoes: ["def", "class", "lambda", "global", "nonlocal", "async def"]
+  controle_fluxo: ["if/elif/else", "for/else", "while/else", "match/case (3.10+)", "try/except/finally", "with/as", "break", "continue", "return", "yield"]
+  expressoes: ["lambda", "list comprehension", "dict comprehension", "set comprehension", "generator expression", "walrus operator :=", "f-string", "ternary x if cond else y"]
+  modificadores_acesso: ["_ (convencao private)", "__ (name mangling)", "@property", "@staticmethod", "@classmethod"]
+  literais: ["integer", "float", "complex", "string", "bytes", "bytearray", "list", "tuple", "dict", "set", "frozenset", "None", "True/False", "Ellipsis"]
+  padroes_matching: ["destructuring (3.10+)", "guards (3.10+)", "wildcards (_) (3.10+)", "or patterns | (3.10+)", "as patterns (3.10+)"]
+  outros: ["decorator syntax @", "context manager protocol", "descriptor protocol", "dunder methods"]
+
+bloco_8_lexico:
+  keywords:
+    - "False"
+    - "None"
+    - "True"
+    - "and"
+    - "as"
+    - "assert"
+    - "async"
+    - "await"
+    - "break"
+    - "class"
+    - "continue"
+    - "def"
+    - "del"
+    - "elif"
+    - "else"
+    - "except"
+    - "finally"
+    - "for"
+    - "from"
+    - "global"
+    - "if"
+    - "import"
+    - "in"
+    - "is"
+    - "lambda"
+    - "nonlocal"
+    - "not"
+    - "or"
+    - "pass"
+    - "raise"
+    - "return"
+    - "try"
+    - "while"
+    - "with"
+    - "yield"
+    - "match"
+    - "case"
+    - "type"
+  operadores: ["+", "-", "*", "/", "//", "%", "**", "@", "==", "!=", ">", "<", ">=", "<=", "and", "or", "not", "in", "not in", "is", "is not", "|=", ">>", "<<", "&", "|", "^", "~", ":="]
+  context_sensitive_keywords: ["async", "await", "yield", "match", "case"]
+  literal_tokens: ["True", "False", "None"]
+
+bloco_9_sistema_tipos:
+  primitivos: ["int", "float", "complex", "bool", "str", "bytes"]
+  referencia_ponteiros: ["T (referencia de objeto)", "typing.ReferenceType"]
+  genericos_templates: ["TypeVar", "Generic[T]", "Protocol[T]", "typing.ParamSpec", "typing.TypeVarTuple"]
+  tipo_ausencia_nulo: ["None", "Optional[T]"]
+  tipo_vazio_never: ["NoReturn", "Never (3.11+)"]
+  tipos_algebricos: ["Union types (X | Y)", "TypedDict", "NamedTuple", "dataclass", "Enum"]
+  outros: ["Any", "Callable", "Iterable", "Sequence", "Mapping", "Awaitable", "AsyncIterator", "ContextManager"]
+
+bloco_10_comparativo:
+  similaridades_para:
+    javascript:
+      - "Ambas sao multiparadigma com tipagem dinamica"
+      - "Ambas dominam seus nichos ecossistemicos (web vs data science)"
+    ruby:
+      - "Filosofia compartilhada de legibilidade e produtividade do programador"
+      - "Tipagem dinamica forte com GC"
+    julia:
+      - "Desenhada para ciencia e computacao numerica"
+      - "Multiparadigma com enfase em expressividade"
+  diferencas_para:
+    rust:
+      - "Python abdica de controle sobre memoria em favor de produtividade; Rust preserva controle com garantias de seguranca"
+      - "Metaforas fundantes opostas: prosa executavel vs controle espacial sobre recursos"
+    haskell:
+      - "Python e pragmatico/imperativo; Haskell e purista/funcional"
+      - "Python usa efeitos colaterais livremente; Haskell os confina na monada IO"
+    java:
+      - "Python prioriza flexibilidade e duck typing; Java prioriza verificacao estatica e hierarquias formais"
+      - "Modelos de GC profundamente diferentes"
+  genealogia_direta: ["abc"]
+  influenciou: ["ruby", "coffeescript", "julia", "go (sintaxe parcial)", "swift (protocolos opcionais)"]
+  familia_linguistica: "Familia ABC/Scripting"
+
+bloco_11_ecossistema:
+  licenca: "OSS"
+  proposito_principal:
+    - "ciencia de dados"
+    - "machine learning"
+    - "automacao de scripts"
+    - "desenvolvimento web (backend)"
+    - "computacao cientifica"
+    - "educacao em programacao"
+  hello_world: 'print("Hello, World!")'
+  ides_principais: ["PyCharm", "VS Code", "Jupyter Notebook/Lab", "Spyder", "Thonny"]
+  bibliotecas_padrao_notaveis: ["os", "sys", "json", "collections", "itertools", "functools", "asyncio", "pathlib", "dataclasses", "typing"]
+  frameworks_canonicos: ["Django", "Flask", "FastAPI", "NumPy", "Pandas", "TensorFlow", "PyTorch", "scikit-learn", "Matplotlib"]
+  comunidades_referencia:
+    - "https://www.python.org/community/"
+    - "https://discuss.python.org/"
+    - "https://realpython.com/"
+  dominios_mercado: ["fintech", "data science", "machine learning", "automacao", "devops", "educacao", "web backend"]
+  pragmatica:
+    idioms_canonicos:
+      - "list comprehension para transformacao"
+      - "decorators para metaprogramacao"
+      - "context managers para gerenciamento de recursos"
+      - "duck typing em vez de verificacao de tipos"
+      - "EAFP (Easier to Ask Forgiveness than Permission) vs LBYL"
+    anti_padroes_comuns:
+      - "modulo circula de imports"
+      - "uso excessivo de globals"
+      - "captura ampla de Exception em vez de excecoes especificas"
+      - "modificacao de lista durante iteracao"
+    convencoes_comunitarias:
+      - "PEP 8 (estilo de codigo)"
+      - "PEP 257 (docstrings)"
+      - "PEP 484 (type hints)"
+      - "venv/virtualenv para isolacao de ambiente"
+
+bloco_12_ordenacao:
+  campos_disponiveis: ["nome", "ano_lancamento", "era_historica", "ranking_tiobe", "distancia_silicio", "gradiente_cognitivo", "familia_linguistica"]
+  padrao: "ano_lancamento"
+  agrupamento_disponivel: ["era_historica", "familia_linguistica", "eixo_2_paradigma", "eixo_4_gerenciamento_memoria"]
+
+bloco_13_acesso:
+  nivel_entrada: "Free"
+  funcionalidades_abertas:
+    - "metadados basicos (B1)"
+    - "classificacao ProCP (B2)"
+    - "metafora fundante - definicao e modo analogia (B4 parcial)"
+    - "hello world (B11)"
+    - "keywords (B8 parcial)"
+  funcionalidades_avancadas:
+    - "GILP completa - 5 camadas (B5)"
+    - "analise Savigny completa - 4 dimensoes (B6)"
+    - "comparativo relacional completo (B10)"
+    - "bloco semiótico (B14)"
+    - "exportacao JSON/YAML"
+    - "busca semantica via API"
+  nivel_confianca: "Preliminar"
+  revisor: "Guilherme Goncalves Machado"
+  versao_schema: "3.1"
+  data_ultima_revisao: "2026-05-05"
+  revisoes_historicas:
+    - data: "2026-05-05"
+      revisor: "Guilherme Goncalves Machado"
+      natureza_mudanca: "Entrada criada como exemplo de aplicacao do schema v3.1. Status Preliminar - revisao prioritaria pendente."
+
+bloco_14_semiotico:
+  relacao_semiotica_predominante: "simbolica"
+  estrutura_triadica:
+    signo: "A keyword 'def' e o sinal formal que inicia uma definicao de funcao. E arbitrario em relacao ao conceito que representa (nao ha motivacao iconica ou indireta)."
+    objeto: "O conceito de 'definicao de procedimento abstraido' - a capacidade de nomear e reutilizar um bloco de computacao."
+    interpretante: "O modelo mental formado no programador de que funcoes sao cidadãos de primeira classe e que a definicao cria um objeto chamavel no namespace."
+  potencial_ambiguidade_semiotica: 4
