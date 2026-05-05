@@ -233,7 +233,7 @@ bloco_8_lexico:
     - "yield"
     # ── Contextuais (reservadas em contexto específico) ──
     - "auto"        # contextual em edition 2024
-    - "dyn"         # keyword ativo mas contextual em trait objects
+    # dyn listado acima como keyword ativo; ver context_sensitive_keywords para uso contextual
     - "union"       # contextual: union declaration vs. union access
     - "'static"     # lifetime reservado
     - "'_"          # lifetime anonimo
@@ -314,8 +314,8 @@ bloco_8_lexico:
     - "r#\"...\"# (raw string with quotes)"
     - "r##\"...\"## (raw string with delimiters)"
     # ── Float literal tokens ──
-    - "inf (float infinity)"
-    - "NaN (float not-a-number)"
+    # Nota: inf e NaN nao sao tokens literais em Rust.
+# Use std::f32::INFINITY, std::f64::NAN ou f32::INFINITY.
     # ── Boolean e unit ──
     - "true"
     - "false"
@@ -432,7 +432,7 @@ bloco_10_comparativo:
     - "cyclone"
     - "ocaml"
     - "sml"
-    - "ceylon"
+    # ceylon removido � nao ha influencia documentada de Ceylon sobre Rust
   influenciou:
     - "swift"
     - "kotlin"
@@ -447,7 +447,7 @@ bloco_10_comparativo:
   familia_linguistica: "Sistemas com Tipos Algébricos / Systems Programming"
 
 bloco_11_ecossistema:
-  licenca: "OSS"
+  licenca: "OSS"   # Licenca real: MIT / Apache 2.0 (dual) � schema v3.1 aceita apenas Proprietary/OSS/Mixed
   proposito_principal:
     - "systems programming (SOs, drivers, kernel modules)"
     - "WebAssembly (front-end e back-end wasm)"
@@ -526,7 +526,7 @@ bloco_11_ecossistema:
       - "Arc<Mutex<T>> quando simples &T bastaria (overhead de sincronização)"
       - "ignorar clippy warnings em vez de corrigir raiz do problema"
       - "genéricos excessivos sobre-engineered quando tipos concretos bastariam"
-    convencoes_comunitárias:
+    convencoes_comunitarias:
       - "snake_case para funções, variáveis, módulos e arquivos"
       - "CamelCase (UpperCamelCase) para tipos, traits e enum variants"
       - "UPPER_SNAKE_CASE para constantes e statics"
