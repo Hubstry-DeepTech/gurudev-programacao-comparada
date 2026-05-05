@@ -1,11 +1,11 @@
-# Gurudev Programação Comparada
+﻿# Gurudev Programação Comparada
 
 > Schema Alexandria v3.1 — O primeiro protocolo formal de catalogação para **Programação Comparada**
 
-[![Working Paper](https://img.shields.io/badge/Working_Paper-DOI_10.5281%2Fzenodo.20028887-blue)](https://doi.org/10.5281/zenodo.20028887)
-[![Schema v3.1](https://img.shields.io/badge/Schema-v3.1-green)](corpus/schema/alexandria-v3.1.json)
-[![License: Code](https://img.shields.io/badge/License-Code-Apache_2.0-orange.svg)](LICENSE)
-[![License: Data](https://img.shields.io/badge/License-Data-CC_BY_4.0-lightgrey.svg)](LICENSE-DATA)
+[![Working Paper](https://img.shields.io/badge/DOI-10.5281/zenodo.20028887-blue)](https://doi.org/10.5281/zenodo.20028887)
+[![Schema v3.1](https://img.shields.io/badge/Schema-v3.1-brightgreen)](corpus/schema/alexandria-v3.1.json)
+[![License: Code](https://img.shields.io/badge/Code-Apache_2.0-orange)](LICENSE)
+[![License: Data](https://img.shields.io/badge/Data-CC_BY_4.0-lightgrey)](LICENSE-DATA)
 
 ---
 
