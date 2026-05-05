@@ -1,0 +1,591 @@
+# Alexandria Schema v3.1 - Entry: Rust
+# Working Paper: Machado, 2026 — DOI 10.5281/zenodo.20028887
+# Valide contra: corpus/schema/alexandria-v3.1.json
+
+meta:
+  versao_schema: "3.1"
+  data_ultima_revisao: "2026-05-05"
+  super_camada: "core_analitico"
+
+bloco_1_metadados:
+  nome: "Rust"
+  slug: "rust"
+  ano_lancamento: 2015
+  autor_empresa: "Graydon Hoare (Mozilla Research) / Rust Foundation"
+  documentacao_oficial: "https://doc.rust-lang.org/book/"
+  descricao_curta: "Linguagem de programacao de sistemas com sistema de ownership e borrowing que garante seguranca de memoria em tempo de compilacao, sem garbage collector."
+
+bloco_2_classificacao_procp:
+  eixo_1_natureza: ["Systems", "GPL"]
+  eixo_2_paradigma: ["Functional", "Concurrent", "Imperative"]
+  eixo_3_tipo_sistema: ["Static", "Strong"]
+  eixo_4_gerenciamento_memoria: ["Ownership"]
+  eixo_5_alvo_compilacao: ["Native", "WASM"]
+  eixo_6_ambiente_execucao: ["Standalone", "Embedded"]
+  eixo_7_distancia_silicio: 2
+  era_historica: "Era 5: Sistemas Modernos (2010-2020)"
+
+bloco_3_status_mercado:
+  status_atual: "Growing"
+  ranking_tiobe: 20
+  ranking_github: 4
+  ranking_stackoverflow: null
+  tendencia_ultimo_ano: "Up"
+  data_dos_rankings: "2026-05"
+
+bloco_4_metafora_fundante:
+  definicao: "O codigo como contrato de propriedade espacial — cada dado tem um dono exclusivo, e o compilador funciona como cartorio que registra e fiscaliza todas as transferencias de posse."
+  explicacao: |
+    A metafora fundante de Rust e a de um sistema juridico de propriedade aplicado a memoria. O conceito de ownership (posse) estabelece que todo dado alocado tem exatamente um dono. Quando esse dono sai de escopo, o dado e desalocado automaticamente — sem GC, sem custo em runtime. O borrow checker e o guardiao semiotico dessa metafora: ele aplica as regras de posse em tempo de compilacao, impedindo aliases mutaveis simultaneos (o que em C causaria data races e em C++ undefined behavior). As referencias emprestadas (borrowing) funcionam como contratos temporarios de uso: o tomador pode ler ou modificar, mas nunca fica com a posse, e o prazo do emprestimo (lifetime) e verificado estaticamente. A ausencia de GC nao e uma limitacao tecnica e uma escolha filosofica: Rust rejeita a metafora do coletor de lixo como um imposto sobre o tempo de execucao que o programador nao pode prever ou controlar. Em vez disso, o custo da liberacao de memoria e pago pelo dono no momento exato em que ele sai de escopo. O contraste com as metasfundantes do corpus e revelador: Python trata o codigo como prosa executavel (legibilidade acima de tudo), COBOL como documento burocratico (verbosidade como garantia), e Rust como contrato de propriedade (seguranca acima de tudo). O programador Rust nao apenas escreve logica — ele registra, em nivel sintatico, quem possui o que, por quanto tempo, e sob quais condicoes a posse pode ser transferida ou compartilhada.
+  modo_analogia_tats: "homologica"
+  homologia_dominio:
+    dominio: "Direito de propriedade e registro de imoveis"
+    tipo_analogia: "homologica"
+    explicacao: |
+      A homologia e estrutural: ownership funciona como titulo de propriedade, borrowing como arrendamento temporario, e lifetimes como prazo de contrato. O borrow checker e o cartorio que verifica, em tempo de compilacao, se todas as transferencias estao registradas e se ninguem esta usando um recurso que ja foi transferido. O sistema de tipos de Rust codifica essa logica juridica: assim como um cartorio imobiliario impede que duas pessoas registrem a mesma escrita, o borrow checker impide que duas referencias mutaveis apontem para o mesmo dado. A similaridade vai alem da metáfora: o sistema de ownership do Rust resolve problemas concretos (data races, use-after-free, dangling pointers) da mesma forma que sistemas juridicos de propriedade resolvem disputas de posse — definindo regras claras, auditáveis e enforceáveis antes que o conflito aconteça.
+
+bloco_5_interface_grammar:
+  camada_1_cognitiva:
+    modelo_mental_induzido: "Pensamento espacial de recursos: o programador Rust raciociona em termos de posse, escopo de vida e fluxo de dados. Cada operacao e vista como transferencia de propriedade ou emprestimo temporario, exigindo consciencia explicita de onde cada dado vive e quem tem o direito de modifica-lo."
+    epistemologia_implicita: "Seguranca em tempo de compilacao e um direito, nao um luxo; a correcao deve ser gratuita em runtime (zero-cost abstractions); o programador e capaz de gerenciar memoria se tiver ferramentas adequadas; conflitos de concorrencia devem ser impossiveis, nao gerenciáveis."
+    gradiente_transformacao_cognitiva: 9
+  camada_2_infraestrutural:
+    distancia_silicio: 2
+    modelo_memoria: "Ownership com borrowing e lifetimes. Cada dado tem um dono exclusivo (move semantics). Referencias emprestadas (&T, &mut T) com lifetime annotations. Tipos inteligentes: Rc<T>, Arc<T>, Box<T>, Cell<T>/RefCell<T>, UnsafeCell."
+    modelo_concorrencia: "Fearless concurrency: o tipo system garante ausencia de data races via Send + Sync traits. std::thread para threads nativas; Mutex, RwLock, channels (mpsc). async/await com Futures e executores Tokio para concorrencia nao-bloqueante."
+  camada_3_sistemica:
+    acesso_syscalls: "Direto via módulo std::sys e FFI com unsafe extern. Nao ha sandboxing — codigo unsafe pode chamar qualquer syscall do SO. Bibliotecas como nix e libc fornecem wrappers seguros em cima de chamadas C."
+    modelo_io: "Assincrono via trait Future + async/await (executores Tokio, async-std); sincrono via std::fs e std::io. BufReader/BufWriter para bufferização. O Rust formaliza a posse de recursos de I/O via Drop trait — arquivos sao fechados automaticamente quando o owner sai de escopo."
+    portabilidade: "Compilador rustc gera binários nativos para Linux, macOS, Windows, WebAssembly, bare-metal (no_std). Cross-compilation via rustup target add.libc independente: musl (Linux), system libc. Ecosssistema tiered de suporte a plataformas (Tier 1-3)."
+  camada_4_ecossistemica:
+    protocolo_interop: "FFI via extern 'C' com ABI compatível com C. Unsafe bridges para C++, Java (JNI), Python (PyO3), Node.js (napi-rs), Ruby, etc. WASM para interoperabilidade web."
+    filosofia_package_manager: "Cargo como ferramenta unificada (build, test, doc, publish). Crates.io como registry central. Dependências com versionamento semver. Workspaces para monorepos. Features para compilação condicional."
+    modelo_governanca: "Rust Foundation (AWS, Google, Microsoft, Mozilla, Huawei). RFC process aberto. Core team + library teams + compiler team. Decision making via rfc.rs."
+  camada_5_cultural:
+    valores_encodados:
+      - "segurança de memória como propriedade da linguagem, não do programador"
+      - "explicitação de custos em tempo de compilacao (zero-cost abstractions)"
+      - "corretude acima de conveniência"
+      - "fearless concurrency — concorrencia sem medo"
+      - "ergonomia sem sacrificar performance"
+      - "inclusão e acessibilidade da comunidade (Code of Conduct enforced)"
+      - "transparência governamental (RFCs publicos, decisões rastreáveis)"
+    transformacao_programador: "Programar em Rust transforma fundamentalmente a relacao do programador com recursos computacionais. O programador aprende a pensar em termos de posse e fluxo de dados: cada variavel e um recurso que pertence a alguem, e cada operacao implica uma transferencia de propriedade ou um emprestimo temporario com prazo definido. Esse modelo mental contrasta radicalmente com o de Python, onde objetos sao compartilhados livremente por referencia e o programador raramente precisa pensar em quem possui um dado, e com o de COBOL, onde a memoria e gerenciada pelo runtime em layouts fixos e o programador raciocina em termos de registros e campos. O programador Rust desenvolve disciplina rigorosa na separacao entre dados compartilhados e dados exclusivos, na antecipacao de problemas de concorrencia antes que eles ocorram, e na distincao entre seguranca garantida pelo compilador (safe Rust) e seguranca assumida pelo programador (unsafe Rust). A transicao de Python para Rust e uma das rupturas cognitivas mais severas entre linguagens contemporaneas: o programador deve renunciar a conveniencia do GC, aprender a explicitar lifetimes, e aceitar que o compilador recusa codigo que funcionaria em tempo de execucao mas que nao pode ser provado seguro estaticamente. Essa experiencia de ser corrigido pelo compilador e transformadora: o programador passa a confiar que codigo que compila esta livre de categorias inteiras de bugs (data races, use-after-free, null dereference)."
+    comunidade_identidade: "Rustaceans — comunidade global com forte cultura de acolhimento, Code of Conduct rigoroso, e enfase na diversidade. Identidade marcada pelo orgulho de usar uma linguagem que nao deixa voce cometer erros de memoria. Cultura de mentorias ativas (RustBridge, Women in Rust)."
+
+bloco_6_analise_savigny:
+  gramatical: |
+    A gramática de Rust torna explicito o que outras linguagens escondem. O verbo let declara variáveis com posse imediata; let mut marca explicitamente a mutabilidade (imutabilidade e o default). O sistema de tipos codifica ownership na assinatura de funções: T indica posse transferida, &T indica empréstimo imutável, &mut T indica empréstimo mutável. As annotations de lifetime ('a) fazem visível o que em C é gerenciado pelo programador sem auxílio do compilador. Pattern matching (match, if let, while let) e o mecanismo central de controle de fluxo, exigindo exaustividade e fazendo explicitos todos os casos possíveis. Traits definem interfaces e comportamentos compartilhados de forma explícita; impl blocos associam comportamento a tipos. A macro println! demonstra a filosofia zero-cost: o format string e processado em tempo de compilacao, gerando código equivalente ao que um programador C escreveria manualmente com sprintf. Unsafe blocks marcam a fronteira entre codigo que o compilador pode provar seguro e codigo que o programador assume a responsabilidade — uma demarcação gramatical de confiança sem paralelo em outras linguagens.
+  semantica: |
+    Rust encoda a teoria de que seguranca de memoria e performance nao sao trade-offs inevitaveis. Cada decisao de design semantico reflete essa conviccao: o borrow checker move o custo da verificacao de aliases para o tempo de compilacao; as traits eliminam o custo de dispatch dinamico quando possivel via monomorfizacao; o sistema de ownership elimina o custo de um GC sem transferir a responsabilidade de desalocacao para o programador — o compilador insere drop calls automaticamente nos pontos de saida de escopo. A nocao de "zero-cost abstractions" e o principio semântico central: toda abstracao de alto nivel pode ser eliminada pelo compilador ate gerar codigo equivalente ao que seria escrito manualmente em C. Rust tambem encoda a teoria de que o tempo de vida de dados e mensuravel e representável no sistema de tipos — uma inovacao semantica que nenhuma linguagem anterior havia formalizado completamente. A existencia de unsafe como mecanismo de escape controlado revela que Rust aceita que nem toda seguranca pode ser verificada estaticamente, mas exige que o programador declare explicitamente onde essa verificacao nao se aplica.
+  historica: |
+    Rust surgiu em 2006 como projeto pessoal de Graydon Hoare na Mozilla Research, motivado pela necessidade de reescrever componentes criticos do Firefox (Gecko) sem os memory bugs cronicos de C++. A proposta era radical: criar uma linguagem de sistemas com seguranca de memoria verificavel estaticamente, sem garbage collector, e com performance comparavel a C. O contexto historico e fundamental: a decada de 2000 foi marcada por uma enxurrada de CVEs de segurança em C/C++ (buffer overflows, use-after-free, double free) que afetavam browsers, sistemas operacionais e infraestrutura critica. O problema nao era falta de habilidade dos programadores — era a incapacidade estrutural de C/C++ de impedir categorias inteiras de erros de memoria. Rust 1.0 foi lançado em maio de 2015, ja com ownership, borrowing, traits, e um ecossistema incipiente em crates.io. A adocao pelo Linux kernel, iniciada com o merge do driver NVMe em Rust em 2022 (Linus Torvalds aprovou pessoalmente), foi o marco de legitimacao definitiva: pela primeira vez, uma linguagem que nao C era aceita no kernel. A Rust Foundation foi criada em 2021 com apoio de AWS, Google, Microsoft, Mozilla e Huawei, consolidando o modelo de governanca independente. A trajetoria de Rust demonstra que e possivel inovar no nivel de linguagens de sistemas com impacto industrial real.
+  sistematica: |
+    Rust herda influencias de multiplas tradicoes: de C/C++ (desempenho, FFI, modelo de memoria manual), de Haskell (sistema de tipos algébricos, pattern matching, type classes como traits), de ML (inferencia de tipos, algebraic data types), de Cyclone (region-based memory management — influencia direta no conceito de lifetimes), e do Swift (error handling com Result e Optional). A relacao com C e a mais significativa: Rust foi projetado explicitamente como substituto de C/C++ em dominios onde seguranca de memoria e critica (SOs, drivers, browsers, infraestrutura de rede). Com Go, Rust compartilha o nicho de "linguagens de sistemas modernas", mas difere fundamentalmente na estrategia: Go usa GC e simplicidade; Rust usa ownership e explicitacao. Com Swift, compartilha a herança de conceitos de Haskell (optionals, enums com dados), mas diverge no alvo (Swift para Apple ecosystem, Rust para sistemas multiplataforma). Rust influenciou significativamente C++ moderno (conceitos de ownership e borrowing foram propostos para futuras versoes do C++), Swift (actor isolation e Sendable), Kotlin (coroutines e flow), Zig (error handling), e Mojo (ownership system).
+
+bloco_7_sintatico:
+  declaracoes:
+    - "let (vinculacao imutavel — move ou copy)"
+    - "let mut (vinculacao mutavel)"
+    - "const (constante avaliada em tempo de compilacao)"
+    - "static (global com lifetime 'static)"
+    - "fn (declaracao de funcao)"
+    - "struct (registro com campos nomeados)"
+    - "enum (tipo algébrico com variantes)"
+    - "impl (bloco de implementacao de trait ou metodo)"
+    - "trait (definicao de interface/protocolo)"
+    - "type (alias de tipo)"
+    - "use (importacao de modulo/extern crate)"
+    - "mod (declaracao de modulo)"
+    - "pub (modificador de visibilidade publica)"
+    - "extern crate (dependencia externa, Rust 2015)"
+    - "macro_rules! (definicao de macro declarativa)"
+    - "union (union C-compatible, unsafe)"
+    - "static mut (global mutavel, unsafe)"
+  controle_fluxo:
+    - "if / else if / else"
+    - "match (pattern matching exaustivo)"
+    - "if let (matching condicional simplificado)"
+    - "while let (loop com matching condicional)"
+    - "loop (loop infinito com break)"
+    - "while (loop com condicao)"
+    - "for (iteracao sobre iteradores)"
+    - "break / continue (controle de loop)"
+    - "return (retorno antecipado)"
+    - "? operator (propagacao de erro com early return)"
+    - "label (loops nomeados: 'outer: loop)"
+  expressoes:
+    - "closures: |params| expr, |params| { body }, move |params| expr"
+    - "ranges: start..end (exclusivo), start..=end (inclusivo)"
+    - "operadores aritmeticos: +, -, *, /, %"
+    - "operadores de comparacao: ==, !=, <, >, <=, >="
+    - "operadores logicos: &&, ||, !"
+    - "operadores bit a bit: &, |, ^, !, <<, >>"
+    - "deref: *expr, borrow: &expr, &mut expr"
+    - "assignment: =, compound: +=, -=, *=, /=, %=, &=, |=, ^=, <<=, >>="
+    - "type cast: expr as Type"
+    - "index: expr[index], field access: expr.field"
+    - "method call: expr.method(), tuple: (a, b, c), array: [1, 2, 3]"
+    - "raw pointer deref: unsafe { *ptr }"
+    - "async block: async { expr }, await: expr.await"
+  modificadores_acesso:
+    - "pub (visibilidade publica)"
+    - "pub(crate) (visível dentro do crate)"
+    - "pub(super) (visível no módulo pai)"
+    - "pub(in path) (visível em caminho específico)"
+    - "private (default — visível apenas no módulo atual)"
+  literais:
+    - "integer: 42, 0xFF, 0o77, 0b1111"
+    - "suffixed integer: 42i32, 42u64, 42isize, 42usize"
+    - "float: 3.14, 3.14f32, 3.14f64"
+    - "boolean: true, false"
+    - "character: a, newline, hex escape, unicode escape"
+    - "string: double-quoted with escape sequences"
+    - "raw string: r-str, r#-delimited, r##-nested##"
+    - "byte string: b-str, br-raw-bytes"
+    - "byte: bA"
+    - "array: [1, 2, 3], [0; 10]"
+    - "tuple: (1, 2, 3)"
+    - "unit: ()"
+    - "none: None (variant of Option)"
+  padroes_matching:
+    - "literal: 0, 'a', \"hello\""
+    - "wildcard: _"
+    - "range: 1..=100"
+    - "identifier binding: x @ pattern"
+    - "guard clause: pattern if condition"
+    - "tuple: (a, b)"
+    - "struct: Point { x, y }"
+    - "enum variant: Some(x), None, Ok(val)"
+    - "slice: [first, middle @ .., last]"
+    - "or patterns: 1 | 2 | 3"
+    - "destructuring: let (a, b) = tuple"
+    - "ref binding: ref x, ref mut x"
+    - "constant: CONST_VALUE"
+    - "nested: Some(Point { x: 0, y })"
+  outros:
+    - "lifetime annotation: 'a, 'static"
+    - "bounded lifetime: 'a: 'b"
+    - "higher-ranked trait bound: for<'a> fn(&'a str)"
+    - "async / await"
+    - "unsafe block"
+    - "dyn Trait (trait object dinamico)"
+    - "impl Trait (trait object estatico / existential)"
+    - "?Sized (trait bound para tipos de tamanho desconhecido)"
+    - "! operator (never type, diverging function)"
+    - "#[derive(Debug, Clone)] (atributo derivável)"
+    - "#[inline] #[cfg(target_os = \"linux\")] (atributos condicionais)"
+
+bloco_8_lexico:
+  keywords:
+    # ── Palavras reservadas ativas (Rust 2024 edition) ──
+    - "as"
+    - "async"
+    - "await"
+    - "break"
+    - "const"
+    - "continue"
+    - "crate"
+    - "dyn"
+    - "else"
+    - "enum"
+    - "extern"
+    - "false"
+    - "fn"
+    - "for"
+    - "if"
+    - "impl"
+    - "in"
+    - "let"
+    - "loop"
+    - "match"
+    - "mod"
+    - "move"
+    - "mut"
+    - "pub"
+    - "ref"
+    - "return"
+    - "self"
+    - "Self"
+    - "static"
+    - "struct"
+    - "super"
+    - "trait"
+    - "true"
+    - "type"
+    - "unsafe"
+    - "use"
+    - "where"
+    - "while"
+    # ── Palavras reservadas para uso futuro ──
+    - "abstract"
+    - "become"
+    - "box"
+    - "do"
+    - "final"
+    - "macro"
+    - "override"
+    - "priv"
+    - "try"
+    - "typeof"
+    - "unsized"
+    - "virtual"
+    - "yield"
+    # ── Contextuais (reservadas em contexto específico) ──
+    - "auto"        # contextual em edition 2024
+    - "dyn"         # keyword ativo mas contextual em trait objects
+    - "union"       # contextual: union declaration vs. union access
+    - "'static"     # lifetime reservado
+    - "'_"          # lifetime anonimo
+  operadores:
+    # ── Aritméticos ──
+    - "+ (adição)"
+    - "- (subtração)"
+    - "* (multiplicação / deref)"
+    - "/ (divisão)"
+    - "% (resto)"
+    # ── Comparação ──
+    - "== (igualdade)"
+    - "!= (desigualdade)"
+    - "< (menor que)"
+    - "> (maior que)"
+    - "<= (menor ou igual)"
+    - ">= (maior ou igual)"
+    # ── Lógicos ──
+    - "&& (AND lógico / lazy)"
+    - "|| (OR lógico / lazy)"
+    - "! (NOT lógico / bitwise NOT)"
+    # ── Bit a bit ──
+    - "& (AND bit a bit / borrow)"
+    - "| (OR bit a bit)"
+    - "^ (XOR bit a bit)"
+    - "<< (shift left)"
+    - ">> (shift right)"
+    # ── Atribuição composta ──
+    - "= (atribuição)"
+    - "+= (assign add)"
+    - "-= (assign sub)"
+    - "*= (assign mul)"
+    - "/= (assign div)"
+    - "%= (assign rem)"
+    - "&= (assign bitand)"
+    - "|= (assign bitor)"
+    - "^= (assign bitxor)"
+    - "<<= (assign shl)"
+    - ">>= (assign shr)"
+    # ── Tipos ──
+    - "-> (tipo de retorno / fat arrow)"
+    - "=> (match arm / pattern)"
+    - ":: (path separator / turbofish)"
+    - ": (type annotation)"
+    - "; (statement terminator)"
+    - ", (separator)"
+    # ── Range ──
+    - ".. (range exclusive)"
+    - "..= (range inclusive)"
+    - "... (spread pattern — deprecated, use ..)"
+    # ── Outros ──
+    - "# (attribute prefix)"
+    - "@ (binding in patterns)"
+    - "$ (macro invocation)"
+    - "? (error propagation / try operator)"
+  context_sensitive_keywords:
+    - "dyn (contexto: trait object dinamico — dyn Trait)"
+    - "union (contexto: declaracao de union vs. acesso a campo union)"
+    - "'static (contexto: lifetime estatico — pode ser string literal ou lifetime)"
+    - "Self (contexto: tipo do implementador — Self vs. self)"
+    - "auto (contexto: edition 2024 — inferencia de trait bounds)"
+    - "try (contexto: bloco try — ? operator / descontinuado como keyword)"
+    - "macro (reservado para uso futuro em macro_rules!)"
+  literal_tokens:
+    # ── Integer prefixes ──
+    - "0b (binary: 0b1010)"
+    - "0o (octal: 0o777)"
+    - "0x (hexadecimal: 0xFF)"
+    # ── Integer suffixes ──
+    - "i8, i16, i32, i64, i128, isize"
+    - "u8, u16, u32, u64, u128, usize"
+    # ── Float suffixes ──
+    - "f32, f64"
+    # ── String prefixes ──
+    - "b\"...\" (byte string)"
+    - "br\"...\" (raw byte string)"
+    - "r\"...\" (raw string)"
+    - "r#\"...\"# (raw string with quotes)"
+    - "r##\"...\"## (raw string with delimiters)"
+    # ── Float literal tokens ──
+    - "inf (float infinity)"
+    - "NaN (float not-a-number)"
+    # ── Boolean e unit ──
+    - "true"
+    - "false"
+    # ── Character ──
+    - "'\\n' (escape sequences)"
+    - "'\\xNN' (hex escape)"
+    - "'\\u{NNNN}' (unicode escape)"
+
+bloco_9_sistema_tipos:
+  primitivos:
+    - "i8 (signed 8-bit)"
+    - "i16 (signed 16-bit)"
+    - "i32 (signed 32-bit)"
+    - "i64 (signed 64-bit)"
+    - "i128 (signed 128-bit)"
+    - "isize (pointer-sized signed)"
+    - "u8 (unsigned 8-bit)"
+    - "u16 (unsigned 16-bit)"
+    - "u32 (unsigned 32-bit)"
+    - "u64 (unsigned 64-bit)"
+    - "u128 (unsigned 128-bit)"
+    - "usize (pointer-sized unsigned)"
+    - "f32 (IEEE 754 single precision)"
+    - "f64 (IEEE 754 double precision)"
+    - "bool (true | false)"
+    - "char (Unicode scalar value, 32-bit)"
+  referencia_ponteiros:
+    - "&T (shared reference — leitura, qualquer numero simultaneo)"
+    - "&mut T (mutable reference — escrita, exclusivo)"
+    - "*const T (raw const pointer — unsafe)"
+    - "*mut T (raw mutable pointer — unsafe)"
+    - "Box<T> (heap allocation com posse unica)"
+    - "Rc<T> (reference counting, single-threaded)"
+    - "Arc<T> (atomic reference counting, multi-threaded)"
+    - "Ref<T> / RefMut<T> (runtime borrow checking via RefCell)"
+    - "Pin<P> (pinned pointer — !Unmove)"
+  genericos_templates:
+    - "T (generico simples)"
+    - "T: Trait (generico com trait bound)"
+    - "T: TraitA + TraitB (multiplas trait bounds)"
+    - "T: 'a (lifetime bound)"
+    - "where T: Trait (where clause)"
+    - "impl Trait (argumento de tipo anonimo)"
+    - "dyn Trait (trait object dinamico)"
+    - "const N: usize (const generic — arrays genericos)"
+    - "T: ?Sized (generico sem limite de tamanho)"
+  tipo_ausencia_nulo:
+    - "Option<T> (Some(T) | None)"
+    - "None (variante ausencia)"
+  tipo_vazio_never:
+    - "() (unit type — tupla vazia, retorna 'nada')"
+    - "! (never type — diverge, nunca retorna)"
+  tipos_algebricos:
+    - "enum (tipo algebraico — variants com ou sem dados)"
+    - "struct (registro com campos nomeados)"
+    - "struct TupleStruct(T1, T2) (tupla com nome)"
+    - "() (unit struct)"
+    - "Result<T, E> (Ok(T) | Err(E) — tratamento de erros)"
+    - "Option<T> (Some(T) | None — ausencia nula)"
+  outros:
+    - "'a (lifetime generico)"
+    - "'static (lifetime estatico)"
+    - "PhantomData<T> (tipo fantasma — marker type)"
+    - "[T; N] (array de tamanho fixo)"
+    - "[T] (slice — visual de tamanho dinamico)"
+    - "str (string slice — visual de texto UTF-8)"
+    - "dyn Trait (trait object — despacho dinamico)"
+    - "impl Fn/FnMut/FnOnce (closure traits)"
+
+bloco_10_comparativo:
+  similaridades_para:
+    c:
+      - "Ambas compilam para binário nativo com desempenho previsível"
+      - "Ambas permitem gerenciamento manual de memória (unsafe em Rust)"
+      - "FFI compatível: Rust pode chamar e ser chamada por C via ABI compatível"
+      - "Modelo de compilação estática tipado — erros detectados antes do runtime"
+    haskell:
+      - "Sistema de tipos algébricos com pattern matching exaustivo"
+      - "Traits como type classes — polimorfismo paramétrico e ad-hoc"
+      - "Inferência de tipos avançada (Hindley-Milner)"
+      - "Imutabilidade como default — mutabilidade é marcada explicitamente"
+    cpp:
+      - "RAII como mecanismo central de gerenciamento de recursos"
+      - "Zero-cost abstractions — abstrações de alto nível sem overhead"
+      - "Sistemas de tipos fortes com generics e templates/concepts"
+      - "Capacidade de programação de baixo nível (unsafe ↔ reinterpret_cast)"
+  diferencas_para:
+    python:
+      - "Rust e estaticamente tipado com posse explicita de dados; Python e dinamicamente tipado com compartilhamento livre por referencia"
+      - "Rust move semantic por default — copia de dados e explicita; Python copia referencias e usa GC para liberacao de memoria"
+      - "Metaforas fundantes opostas: contrato de propriedade (Rust) vs. prosa executavel (Python)"
+      - "Rust trata erros via Result/Option e ? operator (explicito); Python usa exceptions (implicito)"
+      - "Rust nao tem null — usa Option<T>; Python usa None com tipagem dinamica"
+      - "Rust compila para nativo sem runtime; Python requer interpretador e runtime extenso"
+    cobol:
+      - "Rust prioriza seguranca de memoria verificada em compilacao; COBOL prioriza legibilidade por gerentes nao-tecnicos"
+      - "Metaforas opostas: contrato de propriedade espacial (Rust) vs. documento burocratico executavel (COBOL)"
+      - "Rust possui sistema de tipos algébricos, generics, traits; COBOL possui PIC clauses e 88-level condnames"
+      - "Rust tem concorrencia nativa segura (fearless concurrency); COBOL delega concorrencia ao ambiente (CICS)"
+      - "Rust tem ecossistema ativo em crates.io; COBOL depende de middleware mainframe (CICS, IMS, DB2)"
+      - "Eras opostas: Rust e Era 5 (2010-2020); COBOL e Era 2 (1950-1970)"
+    c:
+      - "Rust garante seguranca de memoria em compilacao; C delega toda responsabilidade ao programador"
+      - "Rust proibe aliases mutaveis simultaneos; C permite livremente (causa data races)"
+      - "Rust usa ownership + borrowing em vez de malloc/free manual"
+      - "Rust tem pattern matching exaustivo; C usa switch/case sem exigencia de exaustividade"
+      - "Rust tem Result<T,E> e Option<T> como parte da stdlib; C usa codigos de retorno e NULL"
+      - "Rust incorpora conceitos de programação funcional (closures, iterators, traits); C e puramente imperativo"
+  genealogia_direta:
+    - "c"
+    - "cpp"
+    - "haskell"
+    - "ml"
+    - "cyclone"
+    - "ocaml"
+    - "sml"
+    - "ceylon"
+  influenciou:
+    - "swift"
+    - "kotlin"
+    - "cpp"          # C++ moderno (concepts, modules, ownership proposals)
+    - "zig"
+    - "odin"
+    - "mojo"
+    - "gleam"
+    - "verona"       # Microsoft Research
+    - "carbon"       # Google
+    - "vale"         # research language
+  familia_linguistica: "Sistemas com Tipos Algébricos / Systems Programming"
+
+bloco_11_ecossistema:
+  licenca: "OSS"
+  proposito_principal:
+    - "systems programming (SOs, drivers, kernel modules)"
+    - "WebAssembly (front-end e back-end wasm)"
+    - "embedded e IoT (no_std, bare-metal)"
+    - "CLI tools (alta performance, single binary)"
+    - "networking e servidores de alta concorrencia"
+    - "blockchain e criptografia"
+    - "compiladores e toolchains (rustc, LLVM bindings)"
+  hello_world: |
+    fn main() {
+        println!("Hello, world!");
+    }
+  ides_principais:
+    - "VS Code + rust-analyzer"
+    - "IntelliJ Rust (JetBrains)"
+    - "Neovim + rust-analyzer LSP"
+    - "Zed (editor nativo em Rust)"
+    - "Helix (editor terminal em Rust)"
+    - "rust-analyzer (LSP server oficial)"
+  bibliotecas_padrao_notaveis:
+    - "std::collections (HashMap, BTreeMap, VecDeque, HashSet, BTreeSet)"
+    - "std::io (Read, Write, BufReader, BufWriter)"
+    - "std::sync (Mutex, RwLock, Arc, mpsc channels)"
+    - "std::thread (threads nativas do SO)"
+    - "std::fs (operações de sistema de arquivos)"
+    - "std::net (TCP/UDP networking)"
+    - "std::time (medição de tempo, Duration, Instant)"
+    - "std::future (async/await, Future trait)"
+    - "std::iter (iterators e adapters)"
+    - "std::ffi (FFI bindings)"
+  frameworks_canonicos:
+    - "Tokio (runtime async para networking e concorrência)"
+    - "Axum (web framework ergonômico sobre Tokio)"
+    - "Actix-web (web framework high-performance)"
+    - "Rocket (web framework com macros)"
+    - "Serde (serialização/deserialização — JSON, YAML, TOML, CBOR)"
+    - "Rayon (paralelismo de dados — data parallelism)"
+    - "Diesel (ORM type-safe para bancos de dados)"
+    - "clap (CLI argument parser)"
+    - "reqwest (HTTP client)"
+    - "wasm-bindgen (interoperabilidade WebAssembly/JavaScript)"
+    - "tracing (instrumentação e logging estruturado)"
+    - "tower (stack de middleware para services)"
+  comunidades_referencia:
+    - "https://www.rust-lang.org/community"
+    - "https://users.rust-lang.org"
+    - "https://doc.rust-lang.org"
+    - "https://crates.io"
+    - "https://www.rust-lang.org/governance"
+  dominios_mercado:
+    - "sistemas operacionais (Linux kernel modules, Android)"
+    - "WebAssembly (cloud-edge, browser, server-side)"
+    - "blockchain e DeFi (Solana, Polkadot, NEAR)"
+    - "embedded e IoT (arm, risc-v bare-metal)"
+    - "CLIs e ferramentas de desenvolvedor (ripgrep, fd, bat, exa)"
+    - "infraestrutura de rede e servidores (Cloudflare, AWS Firecracker)"
+    - "compiladores e toolchains"
+    - "segurança e criptografia"
+  pragmatica:
+    idioms_canonicos:
+      - "Result<T, E> com ? operator para tratamento de erros em vez de exceptions"
+      - "Iterator chains (.map().filter().collect()) em vez de loops explícitos"
+      - "Newtype pattern (struct Meters(f64)) para type safety semântica"
+      - "Builder pattern para estruturas complexas com muitos campos opcionais"
+      - "derive macros (#[derive(Debug, Clone, Serialize)) para geração automática de implementations"
+      - "serde para serialização (Serialize/Deserialize derive) — onipresente"
+      - "Arc<Mutex<T>> para compartilhamento seguro entre threads"
+      - "enum com dados para modelar estados e variações de dados"
+      - "impl Trait como argumento e retorno para abstração sobre tipo concreto"
+      - "clippy::needless_pass_by_value para manter ownership minimizado"
+    anti_padroes_comuns:
+      - ".clone() excessivo para evitar entender borrow checker (symptom of bad ownership design)"
+      - ".unwrap() em produção sem tratamento de erro adequado"
+      - "unsafe blocks desnecessários quando existe alternativa safe"
+      - "String quando &'a str bastaria (alocação heap desnecessária)"
+      - "Arc<Mutex<T>> quando simples &T bastaria (overhead de sincronização)"
+      - "ignorar clippy warnings em vez de corrigir raiz do problema"
+      - "genéricos excessivos sobre-engineered quando tipos concretos bastariam"
+    convencoes_comunitárias:
+      - "snake_case para funções, variáveis, módulos e arquivos"
+      - "CamelCase (UpperCamelCase) para tipos, traits e enum variants"
+      - "UPPER_SNAKE_CASE para constantes e statics"
+      - "clippy como linter canônico (cargo clippy -- -W clippy::all)"
+      - "rustfmt como formatador padrao (cargo fmt)"
+      - "cargo test para testes unitários e de integração"
+      - "cargo doc para documentação (/// doc comments com markdown)"
+      - "cargo audit para checagem de vulnerabilidades em dependências"
+      - "Conventional Commits para mensagens de commit"
+      - "semver para versionamento de crates"
+
+bloco_12_ordenacao:
+  campos_disponiveis:
+    - "nome"
+    - "ano_lancamento"
+    - "era_historica"
+    - "ranking_tiobe"
+    - "distancia_silicio"
+    - "gradiente_cognitivo"
+    - "familia_linguistica"
+  padrao: "ranking_tiobe"
+  agrupamento_disponivel:
+    - "era_historica"
+    - "familia_linguistica"
+    - "eixo_2_paradigma"
+    - "eixo_4_gerenciamento_memoria"
+
+bloco_13_acesso:
+  nivel_entrada: "Free"
+  funcionalidades_abertas:
+    - "metadados completos (B1)"
+    - "classificacao ProCP (B2)"
+    - "metafora fundante — definicao e modo analogia (B4 parcial)"
+    - "GILP camadas 1 e 2 resumidas (B5 parcial)"
+    - "hello world (B11)"
+    - "keywords e tipos basicos (B8, B9 parciais)"
+    - "busca basica"
+  funcionalidades_avancadas:
+    - "GILP completa — 5 camadas (B5)"
+    - "Savigny completo — 4 dimensoes (B6)"
+    - "comparativo relacional completo (B10)"
+    - "bloco semiótico completo (B14)"
+    - "historico de revisoes"
+    - "exportacao JSON/CSV"
+    - "API basica"
+    - "busca semantica"
+  nivel_confianca: "Medio"
+  revisor: "Guilherme Goncalves Machado"
+  versao_schema: "3.1"
+  data_ultima_revisao: "2026-05-05"
+  revisoes_historicas:
+    - data: "2026-05-05"
+      revisor: "Guilherme Goncalves Machado"
+      natureza_mudanca: "Entry inicial gerada e validada contra schema v3.1. 14/14 blocos preenchidos. Aguarda revisao por segundo analista para alcance de Alto."
+
+bloco_14_semiotico:
+  relacao_semiotica_predominante: "simbolica"
+  estrutura_triadica:
+    signo: "A lifetime annotation 'a e o signo semiótico central de Rust. Trata-se de um marcador textual que nao existe em tempo de execucao — e puramente simbolico, arbitrario em relacao ao conceito que representa. Nao ha motivacao iconica (uma aspa seguida de 'a' nao lembra tempo de vida) nem indicial (nao e uma marca deixada pelo dado na memoria)."
+    objeto: "O tempo de vida real do dado em memoria — o intervalo entre a alocacao e a desalocacao. A lifetime 'a e o representante formal desse intervalo: quando o compilador resolve 'a, ele esta determinando exatamente quando o dado referenciado sera valido, e recusa compilar caso a referencia possa sobreviver ao dado."
+    interpretante: "O modelo mental formado no programador de que toda referencia tem um prazo de validade, e que o compilador e o guardiao desse prazo. O interpretante de 'a e a internalizacao da nocao de que seguranca de memoria e um problema de logica temporal, nao de gerenciamento manual. O programador Rust passa a 'ver' lifetimes implicitos mesmo em linguagens que nao os possuem — uma transformacao cognitiva permanente."
+  potencial_ambiguidade_semiotica: 3
