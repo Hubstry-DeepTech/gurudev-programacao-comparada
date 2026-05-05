@@ -1,6 +1,6 @@
-# Gurudev Programacao Comparada
+# Gurudev Programação Comparada
 
-> Schema Alexandria v3.1 — O primeiro protocolo formal de catalogacao para **Programacao Comparada**
+> Schema Alexandria v3.1 — O primeiro protocolo formal de catalogação para **Programação Comparada**
 
 [![Working Paper](https://img.shields.io/badge/Working_Paper-DOI_10.5281%2Fzenodo.20028887-blue)](https://doi.org/10.5281/zenodo.20028887)
 [![Schema v3.1](https://img.shields.io/badge/Schema-v3.1-green)](corpus/schema/alexandria-v3.1.json)
@@ -15,77 +15,77 @@
 |---|---|
 | **Pitch Deck** | [PITCH/Pitch_Deck_Alexandria.pdf](PITCH/Pitch_Deck_Alexandria.pdf) |
 | **Roadmap 24 meses** | [ROADMAP.md](ROADMAP.md) |
-| **Modelo de Negocio** | [COMMERCIAL/README.md](COMMERCIAL/README.md) |
+| **Modelo de Negócio** | [COMMERCIAL/README.md](COMMERCIAL/README.md) |
 
 ---
 
-## O que e Programacao Comparada?
+## O que é Programação Comparada?
 
-Inspirada em Literatura Comparada, Direito Comparado e Gramatica Comparada, a **Programacao Comparada (ProCP)** e uma nova disciplina que estuda linguagens de programacao como objetos de estudo cientifico — atraves de analise sistematica, semiotica e hermeneutica comparativa, visando compreender principios universais e facilitar interoperabilidade.
+Inspirada em Literatura Comparada, Direito Comparado e Gramática Comparada, a **Programação Comparada (ProCP)** é uma nova disciplina que estuda linguagens de programação como objetos de estudo científico — através de análise sistemática, semiótica e hermenêutica comparativa, visando compreender princípios universais e facilitar interoperabilidade.
 
-O **Schema Alexandria v3.1** e o protocolo formal que operacionaliza essa disciplina: cada linguagem e catalogada em **14 blocos analiticos validaveis automaticamente** via JSON Schema, fundamentados em TATS (Teoria da Analogia), GILP (Gramatica de Interfaces de Linguagens de Programacao, 5 camadas) e Analise Savigny (4 dimensoes hermeneuticas).
+O **Schema Alexandria v3.1** é o protocolo formal que operacionaliza essa disciplina: cada linguagem é catalogada em **14 blocos analíticos validáveis automaticamente** via JSON Schema, fundamentados em TATS (Teoria da Analogia), GILP (Gramática de Interfaces de Linguagens de Programação, 5 camadas) e Análise Savigny (4 dimensões hermenêuticas).
 
 **Working Paper**: Machado, G. G. (2026). [DOI: 10.5281/zenodo.20028887](https://doi.org/10.5281/zenodo.20028887)
 
 ---
 
-## Estrutura do Repositorio
+## Estrutura do Repositório
 
 ```
 gurudev-programacao-comparada/
 ├── corpus/                              # FONTE DA VERDADE (Schema Alexandria)
 │   ├── schema/alexandria-v3.1.json      # JSON Schema formal (381 linhas)
 │   ├── entries/python.yaml               # Entry-exemplo validada 14/14 blocos
-│   └── README.md                         # Documentacao do corpus
-├── data/                                # Banco de dados legado (pre-schema)
-│   ├── comparative_programming.json      # Prototipo anterior ao schema
-│   └── README.md                         # Nota: separacao de camadas
+│   └── README.md                         # Documentação do corpus
+├── data/                                # Banco de dados legado (pré-schema)
+│   ├── comparative_programming.json      # Protótipo anterior ao schema
+│   └── README.md                         # Nota: separação de camadas
 ├── scripts/
-│   └── validate_corpus.py                # POC: validacao automatica
+│   └── validate_corpus.py                # POC: validação automática
 ├── gurudev/                              # Pacote Python (Apache 2.0)
 ├── COMMERCIAL/
-│   ├── README.md                         # Visao geral do modelo de negocio
+│   ├── README.md                         # Visão geral do modelo de negócio
 │   ├── modelo-freemium.md                # Arquitetura freemium detalhada
 │   └── spinoffs.md                       # Mapa de spinoffs com fases
 ├── PITCH/
 │   └── Pitch_Deck_Alexandria.pdf         # Pitch deck para investidores
 ├── docs/
-│   ├── strategic/                        # Documentacao estrategica
+│   ├── strategic/                        # Documentação estratégica
 │   └── working-paper/                    # Working Paper publicado
-├── ROADMAP.md                            # Roteiro estrategico publico
-├── LICENSE                               # Apache 2.0 (codigo)
-├── LICENSE-DATA                          # CC BY 4.0 (conteudo)
-└── README.md                             # Voce esta aqui
+├── ROADMAP.md                            # Roteiro estratégico público
+├── LICENSE                               # Apache 2.0 (código)
+├── LICENSE-DATA                          # CC BY 4.0 (conteúdo)
+└── README.md                             # Você está aqui
 ```
 
-> **Nota**: `corpus/` e a fonte da verdade cientifica do Schema Alexandria. `data/` e um banco de dados legado com estrutura independente, mantido para a biblioteca de interoperabilidade. As duas camadas tem propositos distintos.
+> **Nota**: `corpus/` é a fonte da verdade científica do Schema Alexandria. `data/` é um banco de dados legado com estrutura independente, mantido para a biblioteca de interoperabilidade. As duas camadas têm propósitos distintos.
 
 ---
 
 ## Schema Alexandria v3.1 — 14 Blocos
 
-| Bloco | Descricao | Fundamento Teorico |
+| Bloco | Descrição | Fundamento Teórico |
 |-------|-----------|-------------------|
-| 1. Metadados | Identificacao e rastreabilidade | Fase gramatical (WP Secao 8.4) |
-| 2. Classificacao ProCP | 7 eixos + era historica | Estrutura ProCP, GILP |
-| 3. Status de Mercado | Rankings, tendencias | Camada ecossistemica |
-| 4. Metafora Fundante | Nucleo semiotico — imagem central | TATS (3 modos de analogia) |
-| 5. Interface Grammar (GILP) | 5 camadas: cognitiva, infraestrutural, sistemica, ecossistemica, cultural | GILP (Secao 5.4) |
-| 6. Analise Savigny | 4 dimensoes: gramatical, semantica, historica, sistematica | Savigny (Secao 6.2) |
-| 7. Sintatico | Inventario de constructos sintaticos | Estrutura superficial vs. profunda |
-| 8. Lexico | Inventario lexical completo | Lexicologia comparada |
-| 9. Sistema de Tipos | Primitivos, genericos, algebricos | Camada infraestrutural |
+| 1. Metadados | Identificação e rastreabilidade | Fase gramatical (WP Seção 8.4) |
+| 2. Classificação ProCP | 7 eixos + era histórica | Estrutura ProCP, GILP |
+| 3. Status de Mercado | Rankings, tendências | Camada ecossistêmica |
+| 4. Metáfora Fundante | Núcleo semiótico — imagem central | TATS (3 modos de analogia) |
+| 5. Interface Grammar (GILP) | 5 camadas: cognitiva, infraestrutural, sistêmica, ecossistêmica, cultural | GILP (Seção 5.4) |
+| 6. Análise Savigny | 4 dimensões: gramatical, semântica, histórica, sistemática | Savigny (Seção 6.2) |
+| 7. Sintático | Inventário de constructos sintáticos | Estrutura superficial vs. profunda |
+| 8. Léxico | Inventário lexical completo | Lexicologia comparada |
+| 9. Sistema de Tipos | Primitivos, genéricos, algébricos | Camada infraestrutural |
 | 10. Comparativo | Analogias e contrastes entre linguagens | TATS, espiral comparativa |
-| 11. Ecossistema | Licencas, frameworks, comunidades | Camada ecossistemica |
-| 12. Ordenacao | Metadados de navegacao | Funcional |
-| 13. Acesso | Modelo de disponibilizacao (Free/Freemium/Paid) | Secoes 2.5 e 3.4 |
-| 14. Semiotico (Peirce) | Relacao iconica/indicial/simbolica, estrutura triadica | Peirce — bloco opcional v3.1 |
+| 11. Ecossistema | Licenças, frameworks, comunidades | Camada ecossistêmica |
+| 12. Ordenação | Metadados de navegação | Funcional |
+| 13. Acesso | Modelo de disponibilização (Free/Freemium/Paid) | Seções 2.5 e 3.4 |
+| 14. Semiótico (Peirce) | Relação icônica/indicial/simbólica, estrutura triádica | Peirce — bloco opcional v3.1 |
 
 ---
 
-## Validacao Automatica (POC)
+## Validação Automática (POC)
 
-O corpus e validado automaticamente contra o JSON Schema:
+O corpus é validado automaticamente contra o JSON Schema:
 
 ```bash
 pip install jsonschema pyyaml
@@ -96,17 +96,17 @@ Resultado esperado: **14/14 blocos validados** (Python como entry-exemplo).
 
 ---
 
-## Modelo de Negocio Freemium
+## Modelo de Negócio Freemium
 
-| Camada | Preco | Conteudo |
+| Camada | Preço | Conteúdo |
 |--------|-------|----------|
-| **Free** | Aberto | Metadados, ProCP, metafora fundante parcial |
-| **Freemium** | Registro | GILP completa, Savigny, busca avancada, API basica |
-| **Explorer** | USD 9/mes | API ilimitada, comparacao multi-linguagem |
-| **Professional** | USD 39/mes | Alexandria LLM, dashboards, certificacoes |
-| **Enterprise** | USD 200-500/mes | On-premise, consulting, SLA |
+| **Free** | Aberto | Metadados, ProCP, metáfora fundante parcial |
+| **Freemium** | Registro | GILP completa, Savigny, busca avançada, API básica |
+| **Explorer** | USD 9/mês | API ilimitada, comparação multi-linguagem |
+| **Professional** | USD 39/mês | Alexandria LLM, dashboards, certificações |
+| **Enterprise** | USD 200-500/mês | On-premise, consulting, SLA |
 
-Principio: o conteudo analitico de alta densidade teorica e **sempre acessivel**. Camadas de conveniencia e ferramenta sao monetizaveis. A integridade epistemologica nao e negociavel.
+Princípio: o conteúdo analítico de alta densidade teórica é **sempre acessível**. Camadas de conveniência e ferramenta são monetizáveis. A integridade epistemológica não é negociável.
 
 Detalhes completos: [COMMERCIAL/modelo-freemium.md](COMMERCIAL/modelo-freemium.md)
 
@@ -116,49 +116,49 @@ Detalhes completos: [COMMERCIAL/modelo-freemium.md](COMMERCIAL/modelo-freemium.m
 
 | Fase | Spinoff | Risco | Retorno |
 |------|---------|-------|---------|
-| 0-6m | Alexandria Insights | Baixo | Medio |
-| 0-6m | Alexandria LLM Alpha (wrapper) | Baixo | Medio |
-| 6-12m | Alexandria Academy | Medio | Alto |
-| 6-12m | Alexandria for Teams | Medio | Alto |
-| 12-18m | Alexandria Consulting | Baixo | Medio |
+| 0-6m | Alexandria Insights | Baixo | Médio |
+| 0-6m | Alexandria LLM Alpha (wrapper) | Baixo | Médio |
+| 6-12m | Alexandria Academy | Médio | Alto |
+| 6-12m | Alexandria for Teams | Médio | Alto |
+| 12-18m | Alexandria Consulting | Baixo | Médio |
 | 12-18m | Alexandria Journal | Baixo | Baixo |
-| 12-18m | Alexandria LLM (fine-tuning) | Medio | Alto |
-| 18-24m | Alexandria Games | Alto | Medio |
+| 12-18m | Alexandria LLM (fine-tuning) | Médio | Alto |
+| 18-24m | Alexandria Games | Alto | Médio |
 
-> **Alexandria LLM** foi dividida em duas fases. O Alpha (wrapper de prompt) e viável nos primeiros 6 meses. O fine-tuning, que requer corpus maduro (50+ entries), foi realocado para a Fase 3.
+> **Alexandria LLM** foi dividida em duas fases. O Alpha (wrapper de prompt) é viável nos primeiros 6 meses. O fine-tuning, que requer corpus maduro (50+ entries), foi realocado para a Fase 3.
 
 Detalhes completos: [COMMERCIAL/spinoffs.md](COMMERCIAL/spinoffs.md) | [ROADMAP.md](ROADMAP.md)
 
 ---
 
-## Dodecagogo Gurudev
+## Dodecálogo Gurudev
 
-1. Simplicidade Elegante sobre complexidade desnecessaria
-2. Expressividade Clara sobre otimizacao prematura
-3. Interoperabilidade Universal sobre isolamento linguistico
-4. Seguranca por Design sobre correcao posterior
+1. Simplicidade Elegante sobre complexidade desnecessária
+2. Expressividade Clara sobre otimização prematura
+3. Interoperabilidade Universal sobre isolamento linguístico
+4. Segurança por Design sobre correção posterior
 5. Composabilidade sobre monolitismo
-6. Imutabilidade Padrao sobre mutabilidade irrestrita
+6. Imutabilidade Padrão sobre mutabilidade irrestrita
 7. Tipagem Gradual sobre extremos absolutos
-8. Concorrencia Cooperativa sobre competicao destrutiva
-9. Metaprogramacao Responsavel sobre magia excessiva
-10. Evolucao Incremental sobre revolucoes disruptivas
-11. Documentacao Viva sobre comentarios mortos
-12. Comunidade Inclusiva sobre elitismo tecnico
+8. Concorrência Cooperativa sobre competição destrutiva
+9. Metaprogramação Responsável sobre magia excessiva
+10. Evolução Incremental sobre revoluções disruptivas
+11. Documentação Viva sobre comentários mortos
+12. Comunidade Inclusiva sobre elitismo técnico
 
 ---
 
 ## Casos de Uso
 
-**Educacao**: Ensino comparativo de linguagens, curriculos multi-paradigmaticos, avaliacao de proficiencia cross-linguagem.
+**Educação**: Ensino comparativo de linguagens, currículos multi-paradigmáticos, avaliação de proficiência cross-linguagem.
 
-**Industria**: Migracao de sistemas legados, integracao de equipes multi-linguagem, decisoes de stack tecnologico fundamentadas em analise semiotica.
+**Indústria**: Migração de sistemas legados, integração de equipes multi-linguagem, decisões de stack tecnológico fundamentadas em análise semiótica.
 
-**Pesquisa**: Analise de evolucao de linguagens, desenvolvimento de DSLs, estudos de usabilidade linguistica.
+**Pesquisa**: Análise de evolução de linguagens, desenvolvimento de DSLs, estudos de usabilidade linguística.
 
 ---
 
-## Instalacao
+## Instalação
 
 ```bash
 pip install gurudev-comparative-programming
@@ -166,22 +166,22 @@ pip install gurudev-comparative-programming
 
 ---
 
-## Licenca
+## Licença
 
-Este repositorio utiliza duas licencas distintas para separar codigo de conteudo:
+Este repositório utiliza duas licenças distintas para separar código de conteúdo:
 
-| Camada | Arquivos | Licenca |
+| Camada | Arquivos | Licença |
 |--------|----------|---------|
-| **Codigo** | `gurudev/`, `scripts/`, `setup.py`, `pyproject.toml` | Apache 2.0 ([LICENSE](LICENSE)) |
-| **Conteudo** | `corpus/`, `data/`, `docs/`, `COMMERCIAL/`, `ROADMAP.md` | CC BY 4.0 ([LICENSE-DATA](LICENSE-DATA)) |
+| **Código** | `gurudev/`, `scripts/`, `setup.py`, `pyproject.toml` | Apache 2.0 ([LICENSE](LICENSE)) |
+| **Conteúdo** | `corpus/`, `data/`, `docs/`, `COMMERCIAL/`, `ROADMAP.md` | CC BY 4.0 ([LICENSE-DATA](LICENSE-DATA)) |
 
-> Ver [data/README.md](data/README.md) para a documentacao da separacao entre `corpus/` e `data/`.
+> Ver [data/README.md](data/README.md) para a documentação da separação entre `corpus/` e `data/`.
 
 ---
 
 ## Autor
 
-**Guilherme Goncalves Machado** — Hubstry DeepTech
+**Guilherme Gonçalves Machado** — Hubstry DeepTech
 
 - **Working Paper**: [DOI: 10.5281/zenodo.20028887](https://doi.org/10.5281/zenodo.20028887)
-- **Repositorio**: [github.com/Hubstry-DeepTech/gurudev-programacao-comparada](https://github.com/Hubstry-DeepTech/gurudev-programacao-comparada)
+- **Repositório**: [github.com/Hubstry-DeepTech/gurudev-programacao-comparada](https://github.com/Hubstry-DeepTech/gurudev-programacao-comparada)
