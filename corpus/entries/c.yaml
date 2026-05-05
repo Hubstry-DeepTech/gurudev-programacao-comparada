@@ -1,0 +1,576 @@
+# Alexandria Schema v3.1 - Entry: C
+# Working Paper: Machado, 2026 — DOI 10.5281/zenodo.20028887
+# Valide contra: corpus/schema/alexandria-v3.1.json
+
+meta:
+  versao_schema: "3.1"
+  data_ultima_revisao: "2026-05-05"
+  super_camada: "core_analitico"
+
+bloco_1_metadados:
+  nome: "C"
+  slug: "c"
+  ano_lancamento: 1972
+  autor_empresa: "Dennis Ritchie / Bell Labs (AT&T)"
+  documentacao_oficial: "https://www.iso.org/standard/74528.html"
+  descricao_curta: "Linguagem de sistemas criada no Bell Labs (1972). Ancestral de C++, Java, Python e Rust, C e a lingua franca da computacao: kernels, compiladores e embedded falam C. Interface direta entre abstracao humana e hardware, com gerenciamento manual de memoria."
+
+bloco_2_classificacao_procp:
+  eixo_1_natureza: ["Systems", "GPL"]
+  eixo_2_paradigma: ["Imperative"]
+  eixo_3_tipo_sistema: ["Static", "Weak"]
+  eixo_4_gerenciamento_memoria: ["Manual"]
+  eixo_5_alvo_compilacao: ["Native"]
+  eixo_6_ambiente_execucao: ["Standalone", "Embedded"]
+  eixo_7_distancia_silicio: 1
+  era_historica: "Era 3: OO e Funcionais (1970-1990)"
+
+bloco_3_status_mercado:
+  status_atual: "Stable"
+  ranking_tiobe: 2
+  ranking_github: null
+  ranking_stackoverflow: null
+  tendencia_ultimo_ano: "Flat"
+  data_dos_rankings: "2026-05"
+
+bloco_4_metafora_fundante:
+  definicao: "O codigo como conversa direta com a maquina — C e a camada mais fina sobre assembly que permite expressao humana. O ponteiro e o dedo que toca o endereco de memoria. Nao ha intermediario, nao ha abstracao obrigatoria, nao ha rede de seguranca. A ausencia de garantias e uma escolha filosofica: 'trust the programmer' como axioma fundante."
+  explicacao: |
+    A metafora fundante de C e a de uma conversa sem intermediarios entre o programador e a maquina. O ponteiro e o instrumento dessa conversa: *ptr nao e uma abstracao sobre dados — e o gesto fisico de tocar o endereco de memoria onde os bytes realmente estao. Quando o programador escreve malloc(sizeof(int) * 100), ele pede exatamente 400 bytes (na maioria das plataformas) ao sistema operacional e recebe de volta um endereco cru. Quando escreve free(ptr), ele devolve ao sistema esses mesmos bytes. Nao ha contrato de propriedade como em Rust, nao ha coletor de lixo como em Python, nao ha verbosidade assecuratoria como em COBOL. Ha apenas o programador, a memoria, e a responsabilidade total de gerenciar a relacao entre ambos. Essa ausencia de intermediarios nao e uma limitacao tecnica — e uma declaracao filosofica: "Trust the programmer" e o axioma epistemologico que diferencia C de toda linguagem de alto nivel subsequente. O compilador C nao e guardiao, nao e fiscal, nao e tutor — e ferramenta. Se o programador erra, o compilador nao o impede; se o programador acerta, o compilador nao adiciona custos. O contraste com as metaforas fundantes do corpus e revelador: Python trata o codigo como prosa executavel (legibilidade acima de tudo), COBOL como documento burocratico (verbosidade como garantia), Rust como contrato de propriedade (seguranca acima de tudo), e C como conversa direta (liberdade acima de tudo). O custo dessa liberdade e que C delega ao programador categorias inteiras de problemas que outras linguagens eliminam por design: data races, use-after-free, buffer overflows, double free, dangling pointers. Mas o beneficio e que C permite ao programador fazer qualquer coisa que o hardware permita — inclusive coisas que linguagens mais seguras deliberadamente proibem.
+  modo_analogia_tats: "homologica"
+  homologia_dominio:
+    dominio: "Linguagem natural e fala direta sem intermediarios"
+    tipo_analogia: "homologica"
+    explicacao: |
+      A homologia e estrutural: um programa C mapeia isomorficamente para sequencias de instrucoes de maquina. A declaracao int x = 5; corresponde a uma instrucao de load imediato no registrador. O ponteiro *ptr e o registrador que aponta para o endereco de memoria. A chamada de funcao func(a, b) corresponde a push de argumentos na stack e jump para o endereco da funcao. Nao e metafora — e correspondencia estrutural direta com o hardware. C foi projetada para ser um "assembly portavel", e essa homologia com a maquina e o que da ao programador C o poder de raciocinar sobre o hardware enquanto escreve codigo legivel. O custo dessa homologia e que o programador deve conhecer os detalhes do mapeamento: endianness, alinhamento de bytes, tamanhos de tipos, padding de structs, e as consequencias de cada operacao em termos de ciclos de clock e acessos a memoria.
+
+bloco_5_interface_grammar:
+  camada_1_cognitiva:
+    modelo_mental_induzido: "O programador C raciocina em termos de bytes, enderecos e fluxo de controle explicito. Cada variavel e uma regiao de memoria com tamanho e localizacao. Cada ponteiro e um endereco numerico. Cada operacao implica consequencias em termos de layout de memoria, ciclo de vida de dados e posse de recursos. O programador nao usa objetos, nao delega ao runtime, nao confia em abstracoes — ele e o gerenciador de memoria."
+    epistemologia_implicita: "O programador e a entidade mais competente para gerenciar memoria; a liberdade de agir inclui a liberdade de errar; o compilador nao deve substituir o julgamento do programador; performance previsivel e mais importante que seguranca garantida; abstracao tem custo e esse custo deve ser visivel e controlavel; a correcao do codigo e responsabilidade de quem escreve, nao de quem compila."
+    gradiente_transformacao_cognitiva: 6
+  camada_2_infraestrutural:
+    distancia_silicio: 1
+    modelo_memoria: "malloc/free manual sem GC. Stack para locais, heap para alocacao dinamica. Ponteiros com aritmetica de enderecos. Arrays decaem para ponteiros em expressoes. Sem verificacao de limites — buffer overflows sao responsabilidade do programador. Tamanho de tipos varia por plataforma."
+    modelo_concorrencia: "pthread como padrao — concorrencia nao e primitiva da linguagem. Sem garantias contra data races ou deadlocks. C11 adicionou _Thread_local e stdatomic.h mas sem enforcement em compilacao. Alternativas: OpenMP (paralelismo), fork/wait (processos UNIX)."
+  camada_3_sistemica:
+    acesso_syscalls: "Direto via libc — wrappers de sistema (open, read, write, close, ioctl, mmap). Sem sandboxing: chamadas de sistema sao acessadas por funcoes da libc. No UNIX/Linux, a libc e a interface padrao entre C e o kernel. Inline assembly possivel via extensions do compilador (__asm__)."
+    modelo_io: "stdio.h (fopen, fread, fwrite, fprintf) para I/O bufferizado. POSIX file descriptors (open, read, write) para baixo nivel. Toda operacao de I/O retorna status que o programador deve verificar — nao ha excecoes. Recursos devem ser liberados manualmente apos uso."
+    portabilidade: "Compiladores gcc, clang, MSVC para Linux, macOS, Windows, embedded (ARM, RISC-V). A promessa de portabilidade e parcial: sintaxe portavel mas comportamento varia por plataforma (tamanhos de tipo, endianness, alinhamento). C99/C11/C23 melhoram com tipos fixos (stdint.h)."
+  camada_4_ecossistemica:
+    protocolo_interop: "C ABI como lingua franca universal: qualquer linguagem chama C via FFI. Extern 'C' garante calling convention compativel. Toda linguagem de sistemas tem bridge para C."
+    filosofia_package_manager: "Ausencia historica de package manager padrao — reflexo da filosofia minimalista. Dependencias gerenciadas via Makefiles, CMake, Meson, pkg-config. Distribuicao de pacotes: apt, yum, brew. vcpkg e conan surgiram recentemente."
+    modelo_governanca: "ISO/IEC JTC1/SC22/WG14 — comite de padronizacao. Processo conservador: C89, C99, C11, C17, C23. Decisoes por consenso entre implementadores nacionais. Nenhum vendor domina o processo."
+  camada_5_cultural:
+    valores_encodados:
+      - "confianca total no programador (trust the programmer)"
+      - "minimalismo radical — apenas o essencial"
+      - "composabilidade acima de expressividade"
+      - "performance previsivel e custo visivel"
+      - "explicitacao total de custos"
+      - "portabilidade como principio (write once, compile anywhere)"
+      - "responsabilidade individual sobre correcao"
+      - "a maquina existe para servir o programador, nao o contrario"
+    transformacao_programador: |
+      Programar em C transforma fundamentalmente a relacao do programador com o hardware. O programador C aprende a visualizar memoria como um espaco linear de bytes enderecaveis, onde cada variavel ocupa uma regiao com endereco, tamanho e alinhamento especificos. Ele desenvolve intuicao sobre stack vs. heap, sobre o custo real de cada alocacao, e sobre as consequencias de cada operacao de ponteiro. Esse modelo mental contrasta radicalmente com o de Python, onde objetos sao caixas opacas cujo ciclo de vida e gerenciado por um coletor de lixo invisivel; com o de COBOL, onde a memoria e organizada em layouts fixos e gerenciada pelo runtime; e com o de Rust, onde o compilador assume o papel de guardiao da memoria e recusa codigo que nao possa provar seguro. O programador C, por contraste, e o unico guardiao: se ele esquecer de liberar memoria, ha leak; se ele liberar duas vezes, ha double free; se ele acessar memoria ja liberada, ha use-after-free. Essa responsabilidade total e transformadora no sentido em que desenvolve uma disciplina rigorosa que nenhuma outra linguagem de alto nivel exige: o programador C passa a pensar em termos de posse, tempo de vida e layout de dados como habitos cognitivos permanentes. A transicao de C para Python e um alivio (o programador ganha liberdade de nao pensar em memoria); a transicao de C para Rust e uma negociacao (o programador troca liberdade por seguranca); mas a transicao de qualquer linguagem para C e uma ruptura: o programador descobre que toda abstracao tem um custo, e que esse custo sempre foi pago por alguem — em C, esse alguem e ele mesmo.
+    comunidade_identidade: "Sistemas Unix/Linux, kernel developers, embedded — comunidade que 'fala a lingua da maquina'. Identidade marcada pelo orgulho de entender hardware e pragmatismo radical. Cultura de 'show me the code' e performance como argumento definitivo."
+
+bloco_6_analise_savigny:
+  gramatical: |
+    A gramatica de C e notavel pela minimalidade. Existem apenas 32 palavras reservadas no C89 (expandidas para ~44 com C23), e cada uma mapeia diretamente para uma operacao de maquina: int, char e float declaram regioes de memoria com tamanho fixo; if e while controlam fluxo via saltos condicionais; a chamada de funcao corresponde a push de argumentos e jump; o retorno corresponde a pop e ret. Ponteiros sao o mecanismo central: T* declara um ponteiro, *ptr desreferencia, &var captura o endereco, ptr->campo acessa campo via ponteiro. A aritmetica de ponteiros (ptr + n) e uma operacao gramatical que nao existe em linguagens de alto nivel — ela traduz diretamente para aritmetica de enderecos no hardware. Structs e unions permitem compor tipos, mas sem encapsulamento (todos os campos sao publicos por definicao). Enums sao apenas inteiros nomeados. Nao ha classes, generics, namespaces, pattern matching, nem closures. Cada ausencia e deliberada: C rejeita abstracoes que adicionam custo ou ocultam o mapeamento para a maquina. O preprocessor (#define, #include, #ifdef) e uma camada textual separada do compilador que permite metaprogramacao rudimentar — mas tambem e fonte de erros dificeis de depurar. A gramatica de C diz, literalmente: "estas sao todas as ferramentas que voce precisa para falar com a maquina. Qualquer coisa a mais e luxo".
+  semantica: |
+    C encoda a teoria de que o programador e a entidade mais competente para gerenciar memoria e tomar decisoes de otimizacao. Undefined behavior nao e falha de design — e a consequencia filosofica de recusar paternalismos. Quando C diz que desreferenciar um ponteiro nulo e "undefined behavior", nao esta dizendo que o compilador vai te impedir de fazer isso — esta dizendo que, se voce fizer, as consequencias sao de sua inteira responsabilidade. A semantica de C diz: "se voce sabe o que esta fazendo, nao ha limite". O operador sizeof permite ao programador medir o custo em bytes de cada tipo. A ausencia de bounds checking em arrays nao e uma omissao — e a declaracao de que o programador deve saber o tamanho dos arrays que manipula. Os casts implicitos entre tipos numericos (a "tipagem fraca" de C) permitem conversoes que outras linguagens proibem, sob a premissa de que o programador sabe o que esta fazendo. Essa filosofia produz o codigo mais eficiente possivel para hardware real, mas tambem produz a maior superficie de ataque para vulnerabilidades de seguranca. A contradicao entre liberdade do programador e seguranca do sistema e a tensao central da semantica de C — e e essa tensao que motivou a criacao de Rust como resposta filosofica oposta.
+  historica: |
+    C surgiu em 1969-1973 no Bell Labs (AT&T), criada por Dennis Ritchie como evolucao da linguagem B (criada por Ken Thompson), que por sua vez descendia do BCPL de Martin Richards. Cada passo na cadeia BCPL -> B -> C adicionou tipos de dados: BCPL era sem tipos, B tinha apenas uma palavra maquina, e C introduziu int, char, float, double, structs e ponteiros tipados. O contexto historico e inseparavel do UNIX: Thompson criou UNIX em assembly PDP-7 em 1969; Ritchie reescreveu o kernel UNIX em C em 1973 — a primeira vez que um sistema operacional significativo foi escrito em linguagem de alto nivel. Isso foi revolucionario porque provou que C era suficientemente expressiva e eficiente para substituir assembly, e que sistemas operacionais poderiam ser portaveis entre arquiteturas de hardware. O livro "The C Programming Language" (Kernighan e Ritchie, 1978) — conhecido como "K&R" — tornou-se o texto fundacional da computacao e definiu o idioma nao-oficial da linguagem por uma decada. A padronizacao formal comecou com ANSI C (C89/C90), seguida por C99 (tipos fixos stdint.h, declaracoes em qualquer ponto, VLAs), C11 (threads, atomics, _Generic), C17 (correcoes) e C23 (bool, nullptr, constexpr, typeof como keywords). O paradoxo de C e que a linguagem criada para portabilidade gerou o codigo mais dependente de plataforma da historia — porque a portabilidade em C e sintatica, mas o comportamento varia com tamanhos de tipo, endianness e alinhamento. A crise de CVEs — mais de 70% das vulnerabilidades criticas em software de infraestrutura sao erros de memoria em C — e o contexto historico que justifica a existencia de Rust. C nao apenas influenciou praticamente todas as linguagens subsequentes; seus problemas estruturais definiram a agenda de pesquisa em seguranca de software por tres decadas.
+  sistematica: |
+    C herda influencias de BCPL (sintaxe e filosofia de simplicidade), B (tipos rudimentares e modelo de execucao), Algol 68 (block structure e escopo lexico) e Assembly (mapeamento direto para instrucoes de maquina). A relacao com Assembly e a mais significativa: C foi projetada como um "assembly portavel" que pudesse substituir codigo de maquina sem perder a capacidade de controlar o hardware. A relacao com COBOL e reveladora: ambas sao da mesma geracao (C e COBOL se sobrepoe temporalmente), mas representam filosofias radicalmente opostas — COBOL abstrai o hardware para legibilidade por gerentes, C expoe o hardware para controle por programadores. C influenciou praticamente toda linguagem posterior de forma direta ou indireta: C++ e um superconjunto de C; Java e C# sintaticamente derivam de C (curly braces, point-and-arrow syntax); Python (CPython), Perl, PHP e Ruby sao implementados em C; JavaScript (V8) compila para maquina via pipeline que inclui otimizacoes inspiradas em C; Rust usa o C ABI como interface com o resto do mundo; Go e Swift compartilham a heranca de C na sintaxe e no modelo de chamadas. A influencia mais profunda, porem, e estrutural: o C ABI (Application Binary Interface) e o denominador comum que permite que qualquer linguagem chame qualquer outra. Toda FFI, em qualquer linguagem, eventualmente passa pelo C ABI. C nao e apenas uma linguagem — e a infraestrutura invisivel sobre a qual toda a computacao moderna esta construida.
+
+bloco_7_sintatico:
+  declaracoes:
+    - "int (inteiro, tamanho dependente da plataforma)"
+    - "char (byte — tamanho exato de 1 por definicao)"
+    - "float (IEEE 754 single precision)"
+    - "double (IEEE 754 double precision)"
+    - "void (tipo vazio — sem valor, sem tamanho)"
+    - "struct (registro com campos nomeados, acesso direto)"
+    - "union (soma sem tag — memória sobreposta)"
+    - "enum (inteiros nomeados — sem dados associados)"
+    - "typedef (alias de tipo)"
+    - "extern (declaracao sem definicao — linkage externo)"
+    - "static (escopo de arquivo ou duracao estatica)"
+    - "auto (armazenamento automatico — ignorado em C11+)"
+    - "register (sugestao de registrador — ignorado em C17+)"
+    - "const (qualificador de only-read)"
+    - "volatile (proibe otimizacao — acesso a memoria mapeada)"
+    - "inline (sugestao de inline — C99)"
+    - "_Bool (booleano — C99)"
+    - "_Complex (numero complexo — C99)"
+    - "_Imaginary (parte imaginaria — C99)"
+    - "_Atomic (atomico — C11)"
+  controle_fluxo:
+    - "if / else if / else"
+    - "switch / case / default (sem exaustividade obrigatoria)"
+    - "while (pre-teste)"
+    - "do-while (pos-teste)"
+    - "for (inicializacao, condicao, incremento)"
+    - "break (saida de loop/switch)"
+    - "continue (proxima iteracao)"
+    - "return (retorno antecipado com valor ou void)"
+    - "goto (salto incondicional — com label)"
+  expressoes:
+    - "aritmeticos: +, -, *, /, % (modulo inteiro)"
+    - "logicos: && (AND), || (OR), ! (NOT) — avaliacao curto-circuito"
+    - "bit a bit: & (AND), | (OR), ^ (XOR), ~ (NOT), <<, >>"
+    - "relacionais: ==, !=, <, >, <=, >="
+    - "ternario: condicao ? valor_verdadeiro : valor_falso"
+    - "sequencia: , (comma operator — avalia esquerda, retorna direita)"
+    - "sizeof (tamanho em bytes — avaliado em compilacao)"
+    - "cast: (tipo)expr — conversao explicita"
+    - "address-of: &var (captura endereco)"
+    - "dereference: *ptr (acessa conteudo do endereco)"
+    - "arrow: ptr->campo (acesso via ponteiro para struct)"
+    - "dot: var.campo (acesso direto em struct)"
+    - "index: arr[i] (equivalente a *(arr + i))"
+    - "increment/decrement: ++, -- (prefix e posfix)"
+    - "assignment: = e compostos: +=, -=, *=, /=, %=, &=, |=, ^=, <<=, >>="
+  modificadores_acesso:
+    - "static (escopo de arquivo — visibilidade limitada ao modulo)"
+    - "extern (linkage externo — visivel entre modulos)"
+    - "register (sugestao de armazenamento em registrador)"
+    - "auto (armazenamento automatico — padrao para variaveis locais)"
+    - "C nao possui public/private/protected — encapsulamento e convencional"
+  literais:
+    - "inteiro decimal: 42"
+    - "inteiro octal: 052"
+    - "inteiro hexadecimal: 0x2A"
+    - "inteiro binario: 0b101010 (C23)"
+    - "sufixos inteiros: L (long), U (unsigned), LL (long long), ULL"
+    - "float: 3.14, .1, 1."
+    - "sufixos float: f (float), l (long double)"
+    - "notacao cientifica: 1.5e10, 1.0E-3"
+    - "character: 'a', '\\n', '\\t', '\\0', '\\x1B', '\\u0041'"
+    - "string: \"hello\", \"\\n\" (escape sequences)"
+    - "wide string: L\"hello\""
+    - "string concatenacao: \"hello\" \" world\" (em compilacao)"
+    - "NULL (macro — geralmente (void*)0 ou 0)"
+    - "true, false (C99 via stdbool.h — macros para 1 e 0)"
+  padroes_matching:
+    - "switch/case (sem exaustividade obrigatoria — fall-through por default)"
+    - "comparacao manual com if/else chains"
+    - "C nao possui pattern matching — a ausencia e design deliberado"
+    - "lookup tables via arrays de funcoes (ponteiros de funcao em array)"
+  outros:
+    - "preprocessor: #define, #include, #ifdef, #ifndef, #if, #elif, #else, #endif, #pragma"
+    - "preprocessor: ## (token pasting), # (stringifying)"
+    - "variadic functions: ... (ellipsis), va_list, va_arg, va_start, va_end"
+    - "designated initializers (C99): struct Point p = {.x = 1, .y = 2}"
+    - "compound literals (C99): (struct Point){1, 2}"
+    - "flexible array members (C99): struct Buf { int len; char data[]; }"
+    - "_Generic (C11): selecao por tipo em compilacao"
+    - "_Static_assert (C11): assercao em compilacao"
+    - "typeof / typeof_unqual (C23): tipo de expressao"
+    - "nullptr (C23): literal de ponteiro nulo tipado"
+
+bloco_8_lexico:
+  keywords:
+    # ── C89/C90 (32 keywords) ──
+    - "auto"
+    - "break"
+    - "case"
+    - "char"
+    - "const"
+    - "continue"
+    - "default"
+    - "do"
+    - "double"
+    - "else"
+    - "enum"
+    - "extern"
+    - "float"
+    - "for"
+    - "goto"
+    - "if"
+    - "int"
+    - "long"
+    - "register"
+    - "return"
+    - "short"
+    - "signed"
+    - "sizeof"
+    - "static"
+    - "struct"
+    - "switch"
+    - "typedef"
+    - "union"
+    - "unsigned"
+    - "void"
+    - "volatile"
+    - "while"
+    # ── C99 adicoes (5) ──
+    - "_Bool"
+    - "_Complex"
+    - "_Imaginary"
+    - "inline"
+    - "restrict"
+    # ── C11 adicoes (7) ──
+    - "_Alignas"
+    - "_Alignof"
+    - "_Atomic"
+    - "_Generic"
+    - "_Noreturn"
+    - "_Static_assert"
+    - "_Thread_local"
+    # ── C23 adicoes (11) ──
+    - "alignas"
+    - "alignof"
+    - "bool"
+    - "constexpr"
+    - "false"
+    - "nullptr"
+    - "static_assert"
+    - "thread_local"
+    - "true"
+    - "typeof"
+    - "typeof_unqual"
+  operadores:
+    # ── Aritmeticos ──
+    - "+ (adicao / unario positivo)"
+    - "- (subtracao / unario negativo)"
+    - "* (multiplicacao / dereference de ponteiro)"
+    - "/ (divisao — inteira ou float)"
+    - "% (resto da divisao inteira)"
+    # ── Relacionais ──
+    - "== (igualdade)"
+    - "!= (desigualdade)"
+    - "< (menor que)"
+    - "> (maior que)"
+    - "<= (menor ou igual)"
+    - ">= (maior ou igual)"
+    # ── Logicos ──
+    - "&& (AND logico — curto-circuito)"
+    - "|| (OR logico — curto-circuito)"
+    - "! (NOT logico)"
+    # ── Bit a bit ──
+    - "& (AND bit a bit / address-of)"
+    - "| (OR bit a bit)"
+    - "^ (XOR bit a bit)"
+    - "~ (NOT bit a bit / complemento)"
+    - "<< (shift left)"
+    - ">> (shift right)"
+    # ── Atribuicao ──
+    - "= (atribuicao simples)"
+    - "+= (assign add)"
+    - "-= (assign sub)"
+    - "*= (assign mul)"
+    - "/= (assign div)"
+    - "%= (assign rem)"
+    - "&= (assign bitand)"
+    - "|= (assign bitor)"
+    - "^= (assign bitxor)"
+    - "<<= (assign shl)"
+    - ">>= (assign shr)"
+    # ── Ponteiro e acesso ──
+    - "* (dereference — acessa conteudo do endereco)"
+    - "& (address-of — captura endereco da variavel)"
+    - "-> (arrow — acesso via ponteiro para struct)"
+    - ". (dot — acesso direto em struct)"
+    - "[] (index — acesso a elemento de array)"
+    # ── Outros ──
+    - "?: (ternario — condicao ? verdadeiro : falso)"
+    - ", (comma — sequenciacao de expressoes)"
+    - "sizeof (tamanho em bytes — avaliado em compilacao)"
+    - "_Alignof (alinhamento em bytes — C11)"
+    - "(type) (cast — conversao explicita de tipo)"
+    - "++ (increment — prefix ou posfix)"
+    - "-- (decrement — prefix ou posfix)"
+  context_sensitive_keywords:
+    - "inline (C99 — comportamento varia por linkage e otimizador)"
+    - "restrict (C99 — hint de nao-aliasing para otimizador)"
+    - "static (tres contextos: variavel local, variavel de arquivo, array)"
+    - "extern (declaracao vs. definicao — linkage externo)"
+    - "register (historico — sugestao ignorada pela maioria dos compiladores)"
+    - "_Generic (C11 — selecao por tipo, requer lista de associacoes)"
+  literal_tokens:
+    # ── Prefixos de inteiro ──
+    - "0x (hexadecimal: 0xFF)"
+    - "0b (binario: 0b1010 — C23)"
+    - "0 (octal: 052 — leading zero)"
+    # ── Sufixos de inteiro ──
+    - "U (unsigned)"
+    - "L (long)"
+    - "UL (unsigned long)"
+    - "LL (long long)"
+    - "ULL (unsigned long long)"
+    # ── Sufixos de float ──
+    - "f / F (float)"
+    - "l / L (long double)"
+    # ── Prefixos de string ──
+    - "L\"...\" (wide string)"
+    - "u\"...\" (UTF-16 string — C11)"
+    - "U\"...\" (UTF-32 string — C11)"
+    - "u8\"...\" (UTF-8 string — C11)"
+
+bloco_9_sistema_tipos:
+  primitivos:
+    - "char (1 byte — menor enderecoavel)"
+    - "signed char (-128 a 127)"
+    - "unsigned char (0 a 255)"
+    - "short (pelo menos 16 bits)"
+    - "int (pelo menos 16 bits — tipicamente 32)"
+    - "long (pelo menos 32 bits)"
+    - "long long (pelo menos 64 bits — C99)"
+    - "unsigned short / int / long / long long"
+    - "float (IEEE 754 single — pelo menos 6 digitos)"
+    - "double (IEEE 754 double — pelo menos 10 digitos)"
+    - "long double (extended precision — plataforma-dependente)"
+    - "_Bool (booleano — 0 ou 1 — C99)"
+    - "void (tipo incompleto — sem valor, sem tamanho)"
+  referencia_ponteiros:
+    - "T* (ponteiro para T — endereco de um T)"
+    - "T** (ponteiro para ponteiro — array de ponteiros, etc.)"
+    - "void* (ponteiro generico — qualquer tipo, sem tipagem)"
+    - "const T* (ponteiro para T imutavel — dados read-only)"
+    - "T* const (ponteiro imutavel — endereco fixo, dados mutaveis)"
+    - "const T* const (ponteiro e dados imutaveis)"
+    - "T[] (array — decai para T* em expressoes, exceto sizeof)"
+    - "T(*)(params) (ponteiro de funcao — endereco de codigo)"
+    - "NULL ((void*)0 ou 0 — ponteiro nulo)"
+  genericos_templates:
+    - "_Generic (C11 — selecao por tipo em tempo de compilacao)"
+    - "void* como polimorfismo manual — cast para tipo concreto"
+    - "macros como templates manuais (#define MAX(a,b) ((a)>(b)?(a):(b)))"
+    - "X-macros para geracao de codigo em compilacao"
+  tipo_ausencia_nulo:
+    - "NULL (macro — geralmente (void*)0 ou inteiro 0)"
+    - "Desreferenciar NULL e undefined behavior"
+    - "Idioma: verificar ptr != NULL antes de acessar"
+  tipo_vazio_never:
+    - "void (tipo incompleto — sem valores, sem tamanho, nao declaravel)"
+    - "funcoes void: nao retornam valor utilizavel"
+    - "void*: ponteiro generico — size_t bytes, tipo desconhecido"
+    - "C nao possui tipo never/exhaustive — divergencia por return; ou exit()"
+  tipos_algebricos:
+    - "struct (produto tipado — campos nomeados em sequencia)"
+    - "union (soma sem tag — memória sobreposta, um campo por vez)"
+    - "enum (inteiros nomeados — sem dados associados, sem tag automatica)"
+    - "struct + function pointers = ad-hoc OOP manual"
+    - "tagged union (struct com enum + union) = variante tipada manual"
+  outros:
+    - "size_t (unsigned — tamanho de objetos, stddef.h)"
+    - "ptrdiff_t (signed — diferenca entre ponteiros)"
+    - "intptr_t / uintptr_t (inteiros que cabem ponteiros — stdint.h)"
+    - "int8_t..int64_t, uint8_t..uint64_t (tipos fixos — C99 stdint.h)"
+    - "intmax_t, uintmax_t (maiores tipos inteiros — C99)"
+    - "VLA — arrays de tamanho variavel (C99, opcional C11)"
+    - "bit fields — campos com largura em bits: unsigned flag : 1"
+    - "struct padding — alinhamento automatico dependente de plataforma"
+
+bloco_10_comparativo:
+  similaridades_para:
+    rust:
+      - "Ambas compilam para binario nativo com desempenho previsivel"
+      - "Mesmo distancia_silicio proximo (C=1, Rust=2) — ambas sao linguagens de sistemas"
+      - "FFI via C ABI: Rust chama e e chamada por C nativamente"
+      - "Ambas permitem controle manual de memoria (unsafe em Rust, padrao em C)"
+    cpp:
+      - "C e praticamente um subconjunto de C++ em sintaxe"
+      - "Mesmo modelo de memoria: malloc/free, stack, heap, ponteiros"
+      - "C ABI compativel: C pode chamar C++ via extern 'C'"
+      - "Compartilham paradigma imperativo e compilacao estatica"
+    assembly:
+      - "Correspondencia estrutural direta com instrucoes de maquina"
+      - "O programador C raciocina em termos de registradores e enderecos"
+      - "Aritmetica de ponteiros equivale a aritmetica de enderecos"
+  diferencas_para:
+    python:
+      - "C e estaticamente tipado com gerenciamento manual de memoria; Python e dinamicamente tipado com GC automatico"
+      - "C exige explicitacao de tipos e tamanhos; Python infere tudo em runtime"
+      - "C tem ponteiros e aritmetica de enderecos; Python abstrai memoria completamente"
+      - "Metaforas opostas: conversa direta com a maquina (C) vs. prosa executavel (Python)"
+      - "C compila para nativo sem runtime; Python requer interpretador e runtime extenso"
+      - "C permite undefined behavior que o programador deve evitar; Python lanca excecoes automaticamente"
+    cobol:
+      - "C expoe o hardware para controle maximo; COBOL abstrai o hardware para legibilidade"
+      - "Metaforas opostas: conversa direta com a maquina (C) vs. documento burocratico (COBOL)"
+      - "C e minimalista (32 keywords); COBOL e verboso (~400 palavras reservadas)"
+      - "C valoriza performance e controle; COBOL valoriza legibilidade por nao-tecnicos"
+      - "C usa ponteiros e malloc/free; COBOL usa layouts de registro e PIC clauses"
+      - "C tem tipagem fraca com casts implicitos; COBOL tem tipagem forte com formatos fixos"
+      - "A mesma era (Era 2/3) produziu filosofias radicalmente opostas"
+    rust:
+      - "C delega toda seguranca ao programador; Rust a garante em compilacao"
+      - "C permite aliases mutaveis simultaneos livremente (causa data races); Rust proibe"
+      - "C tem undefined behavior documentado mas nao enforceado; Rust elimina categorias de UB"
+      - "C nao tem sistema de ownership; Rust formaliza posse e emprestimo no tipo"
+      - "C usa malloc/free manual (responsabilidade total); Rust usa ownership + borrow checker"
+      - "C nao tem Result/Option — usa codigos de retorno e NULL; Rust formaliza tratamento de erros"
+      - "C tem ponteiros brutos com qualquer operacao; Rust separa seguras (&T, &mut T) de inseguras (*const T, *mut T)"
+      - "A relacao C-Rust e a mais importante do corpus: C e o ancestral cujos problemas motivaram Rust"
+  genealogia_direta:
+    - "bcpl"
+    - "b"
+    - "algol-68"
+    - "assembly"
+  influenciou:
+    - "cpp"
+    - "java"
+    - "csharp"
+    - "python"          # CPython implementado em C
+    - "perl"
+    - "php"
+    - "javascript"      # V8 e outros engines compilam para maquina via pipeline C
+    - "rust"            # ancestral direto — problemas de C motivaram Rust
+    - "go"
+    - "swift"
+    - "objective-c"
+    - "lua"
+    - "ruby"
+    - "d"
+    - "zig"
+  familia_linguistica: "Sistemas / Linguagens de Baixo Nivel"
+
+bloco_11_ecossistema:
+  licenca: "OSS"
+  proposito_principal:
+    - "sistemas operacionais (Linux, Windows, macOS, UNIX, RTOS)"
+    - "kernels e device drivers"
+    - "firmware e sistemas embarcados (ARM, RISC-V, AVR, MIPS)"
+    - "compiladores (gcc, clang, tcc) e interpretadores de outras linguagens"
+    - "infraestrutura de rede (TCP/IP stacks, firewalls, load balancers)"
+    - "aplicacoes de alta performance (bancos de dados, engines de jogos, DSPs)"
+    - "criptografia e seguranca (OpenSSL, libgcrypt)"
+  hello_world: |
+    #include <stdio.h>
+
+    int main(void) {
+        printf("Hello, World!\n");
+        return 0;
+    }
+  ides_principais:
+    - "gcc (GNU Compiler Collection)"
+    - "clang (LLVM)"
+    - "MSVC (Microsoft Visual C++)"
+    - "VS Code + clangd (LSP)"
+    - "CLion (JetBrains)"
+    - "Eclipse CDT"
+    - "Vim/Neovim + LSP (clangd)"
+    - "GDB / LLDB (debuggers)"
+  bibliotecas_padrao_notaveis:
+    - "stdio.h (I/O padrao: printf, scanf, fopen, fread, fwrite)"
+    - "stdlib.h (utilitarios: malloc, free, exit, atof, qsort, rand)"
+    - "string.h (manipulacao de strings: strcpy, strlen, memcmp, strtok)"
+    - "math.h (funcoes matematicas: sin, cos, sqrt, pow, log)"
+    - "time.h (tempo: time, clock, difftime, strftime)"
+    - "stdint.h (tipos fixos: int32_t, uint64_t — C99)"
+    - "stdbool.h (booleano: bool, true, false — C99)"
+    - "stddef.h (tipos portateis: size_t, ptrdiff_t, offsetof)"
+    - "errno.h (codigos de erro globais)"
+    - "signal.h (tratamento de sinais UNIX)"
+    - "setjmp.h (saltos nao-locais — error handling arcaico)"
+    - "assert.h (asertoes em depuracao)"
+  frameworks_canonicos:
+    - "POSIX API (pthreads, sockets, file I/O, processos)"
+    - "libc (glibc, musl, bionic — implementacoes da biblioteca padrao)"
+    - "OpenSSL (criptografia — TLS, hashing, assinatura)"
+    - "libcurl (transferencia HTTP/FTP)"
+    - "SQLite (banco de dados embarcado — mais deployado do mundo)"
+    - "zlib (compressao de dados)"
+    - "FreeRTOS (SO de tempo real para embedded)"
+    - "LVGL (GUI para sistemas embarcados)"
+    - "libuv (event loop assincrono — usado pelo Node.js)"
+    - "CMake (sistema de build — padrao de facto para C/C++)"
+  comunidades_referencia:
+    - "https://www.iso.org/committee/45202.html"
+    - "https://en.cppreference.com/w/c"
+    - "https://www.open-std.org/jtc1/sc22/wg14/"
+  dominios_mercado:
+    - "kernels de sistemas operacionais (Linux, Windows NT, macOS XNU, FreeBSD)"
+    - "firmware e sistemas embarcados (microcontroladores, IoT, automotivo)"
+    - "compiladores e maquinas virtuais (gcc, LLVM, V8, JVM HotSpot)"
+    - "infraestrutura de rede (routers, switches, firewalls, load balancers)"
+    - "DSPs e sistemas de tempo real (audio, video, controle industrial)"
+    - "engines de jogos (mecanicas de baixo nivel, renderizacao, fisica)"
+    - "bancos de dados (PostgreSQL, SQLite, Redis — kernels em C)"
+    - "criptografia e seguranca (OpenSSL, OpenSSH, GnuPG)"
+  pragmatica:
+    idioms_canonicos:
+      - "malloc/free em pares simetricos — cada malloc tem seu free, sem excecao"
+      - "NULL check imediato apos malloc — if (ptr == NULL) { handle_error(); }"
+      - "typedef struct para encapsulamento sem OOP — opacidade via ponteiros"
+      - "ponteiros de funcao para polimorfismo manual — arrays de funcoes"
+      - "#ifndef HEADER_H / #define HEADER_H / #endif (include guards)"
+      - "errno para reportar erros — setar antes da chamada, checar depois"
+      - "size_t para tamanhos e contadores — nunca int para indices de array"
+      - "const correctness — const em parametros que nao devem ser modificados"
+      - "RAII manual: goto cleanup; para liberacao condicional de recursos"
+      - "designated initializers (C99) para clareza: .field = value"
+    anti_padroes_comuns:
+      - "buffer overflow — escrita alem do limite do array, causa classica de CVEs"
+      - "use-after-free — acesso a memoria ja liberada (dangling pointer)"
+      - "double free — liberar a mesma memoria duas vezes (corrupcao de heap)"
+      - "gets() — funcao removida do C11 por inseguranca intrinseca (sem verificacao de tamanho)"
+      - "NULL dereference — acessar *ptr sem verificar ptr != NULL antes"
+      - "memory leak — alocar com malloc e esquecer de liberar com free"
+      - "integer overflow — operacoes aritmeticas que excedem o limite do tipo"
+      - "undefined behavior — confiar no comportamento observado como garantia"
+    convencoes_comunitarias:
+      - "snake_case para funcoes e variaveis (Linux kernel coding style)"
+      - "UPPER_SNAKE_CASE para macros e constantes #define"
+      - "prefixo de modulo: libfoo_function_name() (convensao UNIX)"
+      - "typedefs PascalCase para tipos opacos: typedef struct Foo Foo;"
+      - "header guards: #ifndef FOO_H / #define FOO_H / #endif"
+      - "um arquivo .h por modulo com declaracoes, um .c com definicoes"
+      - "indentacao por tabs (Linux kernel) ou espacos (GNU style)"
+      - "/** Doxygen */ para documentacao de API"
+
+bloco_12_ordenacao:
+  campos_disponiveis:
+    - "nome"
+    - "ano_lancamento"
+    - "era_historica"
+    - "ranking_tiobe"
+    - "distancia_silicio"
+    - "gradiente_cognitivo"
+    - "familia_linguistica"
+  padrao: "ranking_tiobe"
+  agrupamento_disponivel:
+    - "era_historica"
+    - "familia_linguistica"
+    - "eixo_2_paradigma"
+    - "eixo_4_gerenciamento_memoria"
+
+bloco_13_acesso:
+  nivel_entrada: "Free"
+  funcionalidades_abertas:
+    - "metadados completos (B1)"
+    - "classificacao ProCP (B2)"
+    - "metafora fundante — definicao e modo analogia (B4 parcial)"
+    - "GILP camadas 1 e 2 resumidas (B5 parcial)"
+    - "hello world (B11)"
+    - "keywords e tipos basicos (B8, B9 parciais)"
+    - "busca basica"
+  funcionalidades_avancadas:
+    - "GILP completa — 5 camadas (B5)"
+    - "Savigny completo — 4 dimensoes (B6)"
+    - "comparativo relacional completo (B10)"
+    - "bloco semiotico completo (B14)"
+    - "historico de revisoes"
+    - "exportacao JSON/CSV"
+    - "API basica"
+    - "busca semantica"
+  nivel_confianca: "Medio"
+  revisor: "Guilherme Goncalves Machado"
+  versao_schema: "3.1"
+  data_ultima_revisao: "2026-05-05"
+  revisoes_historicas:
+    - data: "2026-05-05"
+      revisor: "Guilherme Goncalves Machado"
+      natureza_mudanca: "Entry inicial gerada contra schema v3.1. 14/14 blocos preenchidos. Aguarda segundo revisor para nivel Alto."
+
+bloco_14_semiotico:
+  relacao_semiotica_predominante: "indicial"
+  estrutura_triadica:
+    signo: "O operador * (dereference) e o signo semiotico central de C. Diferente da lifetime annotation de Rust (puramente simbolica) e da PICTURE clause de COBOL (iconica), * e predominantemente indicial: ele estabelece uma conexao fisica entre o signo e o objeto. *ptr nao representa o dado — ele acessa o endereco real onde os bytes residem. A relacao e de contingencia fisica: o ponteiro aponta para um lugar concreto na memoria."
+    objeto: "O dado real armazenado no endereco de memoria apontado pelo ponteiro. Quando o programador escreve *ptr, o objeto e o conteudo bruto daquele endereco — nao uma copia abstrata, nao uma representacao, mas os proprios bytes na memoria com seus bits e alinhamento tal como existem fisicamente no hardware. Essa materialidade do objeto distingue C de qualquer linguagem de alto nivel."
+    interpretante: "O modelo mental do programador de que toda variavel tem um endereco e que * e a operacao de ir ate la. O programador C desenvolve intuicao espacial da memoria: visualiza enderecos, offsets e deslocamentos. Esse interpretante e permanente — o programador C raciocina em enderecos mesmo em linguagens de alto nivel. A alta ambiguidade semiotica (potencial 8) reflete o fato de que * tambem significa multiplicacao e & significa bitwise AND."
+  potencial_ambiguidade_semiotica: 8
