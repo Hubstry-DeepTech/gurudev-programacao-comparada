@@ -42,7 +42,9 @@ Cada spinoff explora uma dimensão diferente do valor gerado pelo corpus, sem co
 
 ## 4. Alexandria LLM
 
-**O quê**: Fine-tuning de modelos de linguagem no corpus — geração de análises comparativas, completar entries preliminares, responder consultas com fundamentação teórica.
+**Fase 1 (Alpha)**: Wrapper de prompt sobre API de LLM (Claude/GPT) usando o schema Alexandria como contexto para consultas com fundamentação teórica. Viável com corpus reduzido e sem custo de treinamento.
+
+**Fase 3 (MVP)**: Fine-tuning de modelos de linguagem no corpus — geração de análises comparativas, completar entries preliminares, responder consultas com fundamentação teórica. Requer corpus com volume significativo (50+ entries).
 
 **Público-alvo**: Desenvolvedores, pesquisadores, educadores
 
@@ -92,10 +94,11 @@ Cada spinoff explora uma dimensão diferente do valor gerado pelo corpus, sem co
 
 | Fase | Spinoff | Risco | Retorno |
 |------|---------|-------|---------|
-| Fase 1 (0-6m) | Alexandria LLM | Médio | Alto |
 | Fase 1 (0-6m) | Alexandria Insights | Baixo | Médio |
+| Fase 1 (0-6m) | Alexandria LLM Alpha (wrapper de prompt) | Baixo | Médio |
 | Fase 2 (6-12m) | Alexandria Academy | Médio | Alto |
 | Fase 2 (6-12m) | Alexandria for Teams | Médio | Alto |
 | Fase 3 (12-18m) | Alexandria Consulting | Baixo | Médio |
 | Fase 3 (12-18m) | Alexandria Journal | Baixo | Baixo |
+| Fase 3 (12-18m) | Alexandria LLM (fine-tuning) | Médio | Alto |
 | Fase 4 (18-24m) | Alexandria Games | Alto | Médio |

@@ -24,7 +24,7 @@ bloco_2_classificacao_procp:
   eixo_5_alvo_compilacao: ["Bytecode", "Interpreted"]
   eixo_6_ambiente_execucao: ["Standalone", "VM"]
   eixo_7_distancia_silicio: 8
-  era_historica: "Era 3: OO e Funcionais (1970-1990)"
+  era_historica: "Era 4: Web e Scripts (1990-2010)"
 
 bloco_3_status_mercado:
   status_atual: "Growing"
@@ -219,14 +219,17 @@ bloco_13_acesso:
     - "bloco semiótico (B14)"
     - "exportacao JSON/YAML"
     - "busca semantica via API"
-  nivel_confianca: "Preliminar"
+  nivel_confianca: "Medio"
   revisor: "Guilherme Goncalves Machado"
   versao_schema: "3.1"
   data_ultima_revisao: "2026-05-05"
   revisoes_historicas:
     - data: "2026-05-05"
       revisor: "Guilherme Goncalves Machado"
-      natureza_mudanca: "Entrada criada como exemplo de aplicacao do schema v3.1. Status Preliminar - revisao prioritaria pendente."
+      natureza_mudanca: "Entrada criada como exemplo de aplicacao do schema v3.1."
+    - data: "2026-05-05"
+      revisor: "Guilherme Goncalves Machado"
+      natureza_mudanca: "Elevacao de Preliminar para Medio: 14/14 blocos preenchidos, Savigny completo, bloco semiotico Peirce preenchido. Aguarda revisao por segundo analista para alcance de Alto."
 
 bloco_14_semiotico:
   relacao_semiotica_predominante: "simbolica"

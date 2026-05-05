@@ -4,7 +4,8 @@
 
 [![Working Paper](https://img.shields.io/badge/Working_Paper-DOI_10.5281%2Fzenodo.20028887-blue)](https://doi.org/10.5281/zenodo.20028887)
 [![Schema v3.1](https://img.shields.io/badge/Schema-v3.1-green)](corpus/schema/alexandria-v3.1.json)
-[![License](https://img.shields.io/badge/License-Apache_2.0-orange.svg)](LICENSE)
+[![License: Code](https://img.shields.io/badge/License-Code-Apache_2.0-orange.svg)](LICENSE)
+[![License: Data](https://img.shields.io/badge/License-Data-CC_BY_4.0-lightgrey.svg)](LICENSE-DATA)
 
 ---
 
@@ -32,25 +33,32 @@ O **Schema Alexandria v3.1** e o protocolo formal que operacionaliza essa discip
 
 ```
 gurudev-programacao-comparada/
-├── corpus/
-│   ├── schema/alexandria-v3.1.json   # JSON Schema formal (381 linhas)
-│   ├── entries/python.yaml            # Entry-exemplo validada 14/14 blocos
-│   └── README.md                      # Documentacao do corpus
+├── corpus/                              # FONTE DA VERDADE (Schema Alexandria)
+│   ├── schema/alexandria-v3.1.json      # JSON Schema formal (381 linhas)
+│   ├── entries/python.yaml               # Entry-exemplo validada 14/14 blocos
+│   └── README.md                         # Documentacao do corpus
+├── data/                                # Banco de dados legado (pre-schema)
+│   ├── comparative_programming.json      # Prototipo anterior ao schema
+│   └── README.md                         # Nota: separacao de camadas
 ├── scripts/
-│   └── validate_corpus.py             # POC: validacao automatica
+│   └── validate_corpus.py                # POC: validacao automatica
+├── gurudev/                              # Pacote Python (Apache 2.0)
 ├── COMMERCIAL/
-│   ├── README.md                      # Visao geral do modelo de negocio
-│   ├── modelo-freemium.md             # Arquitetura freemium detalhada
-│   └── spinoffs.md                    # Mapa de 7 spinoffs
+│   ├── README.md                         # Visao geral do modelo de negocio
+│   ├── modelo-freemium.md                # Arquitetura freemium detalhada
+│   └── spinoffs.md                       # Mapa de spinoffs com fases
 ├── PITCH/
-│   └── Pitch_Deck_Alexandria.pdf      # Pitch deck para investidores
+│   └── Pitch_Deck_Alexandria.pdf         # Pitch deck para investidores
 ├── docs/
-│   ├── strategic/                     # Documentacao estrategica
-│   └── working-paper/                 # Working Paper publicado
-├── ROADMAP.md                         # Roteiro estrategico publico
-├── gurudev/                           # Pacote Python
-└── README.md                          # Voce esta aqui
+│   ├── strategic/                        # Documentacao estrategica
+│   └── working-paper/                    # Working Paper publicado
+├── ROADMAP.md                            # Roteiro estrategico publico
+├── LICENSE                               # Apache 2.0 (codigo)
+├── LICENSE-DATA                          # CC BY 4.0 (conteudo)
+└── README.md                             # Voce esta aqui
 ```
+
+> **Nota**: `corpus/` e a fonte da verdade cientifica do Schema Alexandria. `data/` e um banco de dados legado com estrutura independente, mantido para a biblioteca de interoperabilidade. As duas camadas tem propositos distintos.
 
 ---
 
@@ -104,17 +112,20 @@ Detalhes completos: [COMMERCIAL/modelo-freemium.md](COMMERCIAL/modelo-freemium.m
 
 ---
 
-## 7 Spinoffs
+## Spinoffs
 
-| Fase | Spinoff | Retorno |
-|------|---------|---------|
-| 0-6m | Alexandria LLM | Alto |
-| 0-6m | Alexandria Insights | Medio |
-| 6-12m | Alexandria Academy | Alto |
-| 6-12m | Alexandria for Teams | Alto |
-| 12-18m | Alexandria Consulting | Medio |
-| 12-18m | Alexandria Journal | Baixo |
-| 18-24m | Alexandria Games | Medio |
+| Fase | Spinoff | Risco | Retorno |
+|------|---------|-------|---------|
+| 0-6m | Alexandria Insights | Baixo | Medio |
+| 0-6m | Alexandria LLM Alpha (wrapper) | Baixo | Medio |
+| 6-12m | Alexandria Academy | Medio | Alto |
+| 6-12m | Alexandria for Teams | Medio | Alto |
+| 12-18m | Alexandria Consulting | Baixo | Medio |
+| 12-18m | Alexandria Journal | Baixo | Baixo |
+| 12-18m | Alexandria LLM (fine-tuning) | Medio | Alto |
+| 18-24m | Alexandria Games | Alto | Medio |
+
+> **Alexandria LLM** foi dividida em duas fases. O Alpha (wrapper de prompt) e viável nos primeiros 6 meses. O fine-tuning, que requer corpus maduro (50+ entries), foi realocado para a Fase 3.
 
 Detalhes completos: [COMMERCIAL/spinoffs.md](COMMERCIAL/spinoffs.md) | [ROADMAP.md](ROADMAP.md)
 
@@ -157,8 +168,14 @@ pip install gurudev-comparative-programming
 
 ## Licenca
 
-- **Codigo**: Apache 2.0
-- **Conteudo cientifico (corpus, schema)**: CC BY 4.0
+Este repositorio utiliza duas licencas distintas para separar codigo de conteudo:
+
+| Camada | Arquivos | Licenca |
+|--------|----------|---------|
+| **Codigo** | `gurudev/`, `scripts/`, `setup.py`, `pyproject.toml` | Apache 2.0 ([LICENSE](LICENSE)) |
+| **Conteudo** | `corpus/`, `data/`, `docs/`, `COMMERCIAL/`, `ROADMAP.md` | CC BY 4.0 ([LICENSE-DATA](LICENSE-DATA)) |
+
+> Ver [data/README.md](data/README.md) para a documentacao da separacao entre `corpus/` e `data/`.
 
 ---
 
