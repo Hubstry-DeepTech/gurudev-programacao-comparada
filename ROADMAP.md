@@ -59,13 +59,16 @@ O conteúdo analítico de alta densidade teórica é **sempre acessível**. Cama
 
 | # | Spinoff | Descrição | Fase | Risco |
 |---|---------|-----------|------|-------|
-| 1 | **Alexandria LLM** | Fine-tuning de LLM no corpus — consultas com fundamentação teórica | 0-6m | Médio |
-| 2 | **Alexandria Insights** | Relatórios analíticos periódicos sobre o estado das linguagens | 0-6m | Baixo |
+| 1 | **Alexandria Insights** | Relatórios analíticos periódicos sobre o estado das linguagens | 0-6m | Baixo |
+| 2 | **Alexandria LLM Alpha** | Wrapper de prompt sobre API Claude/GPT com schema como contexto | 0-6m | Baixo |
 | 3 | **Alexandria Academy** | Plataforma de ensino com GILP como esqueleto pedagógico | 6-12m | Médio |
 | 4 | **Alexandria for Teams** | Ferramenta de decisão tecnológica para CTOs e tech leads | 6-12m | Médio |
 | 5 | **Alexandria Consulting** | Auditoria de stack com lente PC, migração entre paradigmas | 12-18m | Baixo |
 | 6 | **Alexandria Journal** | Periódico acadêmico dedicado à Programação Comparada | 12-18m | Baixo |
-| 7 | **Alexandria Games** | Jogos sérios e gamificação sobre semiótica de linguagens | 18-24m | Alto |
+| 7 | **Alexandria LLM** | Fine-tuning de LLM no corpus (requer 50+ entries) | 12-18m | Médio |
+| 8 | **Alexandria Games** | Jogos sérios e gamificação sobre semiótica de linguagens | 18-24m | Alto |
+
+> **Nota**: Alexandria LLM foi dividida em duas fases. O Alpha (wrapper de prompt) é viável nos primeiros 6 meses sem custo de treinamento. O fine-tuning, que requer corpus com volume significativo, foi realocado para a Fase 3 (12-18m).
 
 ---
 
@@ -73,7 +76,8 @@ O conteúdo analítico de alta densidade teórica é **sempre acessível**. Cama
 
 ### Fase 1 (0-6 meses) — Fundação
 - Expandir corpus de 1 para 15+ linguagens catalogadas
-- Lançar Alexandria LLM (MVP)
+- Lançar Alexandria Insights (relatórios periódicos)
+- Lançar Alexandria LLM Alpha (wrapper de prompt sobre API)
 - Publicar 2+ artigos em conferências (SPLASH, POPL)
 - Versão beta da API pública
 
@@ -85,6 +89,7 @@ O conteúdo analítico de alta densidade teórica é **sempre acessível**. Cama
 
 ### Fase 3 (12-18 meses) — Expansão
 - 150+ linguagens no corpus
+- Alexandria LLM (fine-tuning, corpus maduro)
 - Alexandria Consulting ativo
 - Alexandria Journal (primeira edição)
 - Receita recorrente USD 50k+/ano
@@ -103,9 +108,9 @@ O conteúdo analítico de alta densidade teórica é **sempre acessível**. Cama
 |------|--------|
 | Working Paper publicado no Zenodo | DOI: 10.5281/zenodo.20028887 |
 | Schema Alexandria v3.1 | JSON Schema formal validável |
-| Entry-exemplo Python | 14/14 blocos preenchidos e validados |
+| Entry-exemplo Python | 14/14 blocos preenchidos e validados (nível Médio) |
 | POC funcional | `scripts/validate_corpus.py` |
-| Código aberto | Apache 2.0 + CC BY 4.0 |
+| Código aberto | Apache 2.0 (código) + CC BY 4.0 (conteúdo) |
 
 ---
 
